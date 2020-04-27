@@ -1,21 +1,23 @@
 #ifndef MEDIA_H
 #define MEDIA_H
 
-// Read me of the class
-// Explain its role
-
 #include <string>
 using namespace std;
 
+// Read me of the class
+// Explain its role
+
 class Media{
 private:
+
 	string name;
 	string title;
 	string author;
+
 public:
 	//Constructors
 	Media();
-	Media(string name,string title,string author)
+	Media(string name,string title,string author);
 	//Destructors
 
 	//Getters

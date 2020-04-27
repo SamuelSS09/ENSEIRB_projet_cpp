@@ -1,15 +1,10 @@
 # makefile for multi-folder projetct
 
 CXX = g++
-
-# works for the implicit rules created by the interpreter
-
 OBJDIR = obj
-
 VPATH = src
-
 HEAD = header
-
+DATABASE = database
 CXXFLAGS = -g -Wall -I $(HEAD)/
 
 

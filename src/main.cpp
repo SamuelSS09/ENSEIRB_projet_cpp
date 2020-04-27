@@ -1,7 +1,10 @@
 #include <iostream>
 using namespace std;
+#include "Media.h"
 
-ind main{
-	cout << "Hello World" << endl;
+int main(){
+
+	Media *m = new Media();
+	cout << m->to_string() << endl;
 	return 0;
 }

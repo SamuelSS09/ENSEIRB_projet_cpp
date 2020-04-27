@@ -3,11 +3,15 @@ Projet cpp - librairie
 
 # Compilation
 Pour générer l'executable main: _make_
+
 Pour éffacer tous les objets _make clean_
+
 Pour executer le programme: _./main_
 
 # Édition des figures:
+
 Diagramme de classes:
+
 Diagramme de cas: 
 
 
