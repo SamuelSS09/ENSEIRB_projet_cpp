@@ -12,6 +12,6 @@ Media::Media(string name,string title,string author){
 }
 
 
-string Media::to_string(){
-	return "should have a string";
-}
+// string Media::to_string(){
+// 	return "should have a string";
+// }

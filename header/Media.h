@@ -4,8 +4,11 @@
 #include <string>
 using namespace std;
 
-// Read me of the class
-// Explain its role
+// READ ME -----------------------------------------------------------------
+
+// This is an ABSTRACT CLASS, and as such cannot be instantiated
+// This is seem from the pure virtual function to_string
+// -------------------------------------------------------------------------
 
 class Media{
 private:
@@ -19,10 +22,12 @@ public:
 	Media();
 	Media(string name,string title,string author);
 
+
 	// Destructors
-	// Class does not have pointers, so no memory leak
-	// is likely. Therefore, no need to change the default
-	// destructor.
+	// This class is abstract, so we want to call the destructors of its childs.
+	// That is why we need a virtual destructor, so it can be overriden bas its child destructor
+	// more info :https://stackoverflow.com/questions/1123044/when-should-your-destructor-be-virtual
+	virtual ~Media(){}
 
 	//Getters
 	string get_name(){return this->name;}
@@ -35,7 +40,7 @@ public:
 	void set_name(string name){this->name=name;}
 
 	//Other functions
-	virtual string to_string();
+	virtual string to_string() = 0; // Pure virtual function
 };
 
 #endif

@@ -1,10 +1,12 @@
 #include <iostream>
 using namespace std;
-#include "Cd.h"
+#include "Review.h"
 
 int main(){
 
-	Cd d = Cd("hoje","eu","vou",0,"na",17);
-	cout << d.to_string() << endl;
+	Media *m;
+	m = new Review();
+	cout << m->to_string() << endl;
+	delete m;
 	return 0;
 }
