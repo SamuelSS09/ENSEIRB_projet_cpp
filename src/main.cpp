@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
-#include "Media.h"
+#include "Cd.h"
 
 int main(){
 
-	Media *m = new Media();
-	cout << m->to_string() << endl;
+	Cd d = Cd("hoje","eu","vou",0,"na",17);
+	cout << d.to_string() << endl;
 	return 0;
 }

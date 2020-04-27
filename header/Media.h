@@ -18,7 +18,11 @@ public:
 	//Constructors
 	Media();
 	Media(string name,string title,string author);
-	//Destructors
+
+	// Destructors
+	// Class does not have pointers, so no memory leak
+	// is likely. Therefore, no need to change the default
+	// destructor.
 
 	//Getters
 	string get_name(){return this->name;}
@@ -27,8 +31,8 @@ public:
 
 	//Setters
 	void set_author(string author){this->author=author;}
-	void set_title(string title){this->author=title;}
-	void set_name(string name){this->author=name;}
+	void set_title(string title){this->title=title;}
+	void set_name(string name){this->name=name;}
 
 	//Other functions
 	virtual string to_string();
