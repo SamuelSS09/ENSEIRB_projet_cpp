@@ -25,7 +25,7 @@ public:
 
 	// Destructors
 	// This class is abstract, so we want to call the destructors of its childs.
-	// That is why we need a virtual destructor, so it can be overriden bas its child destructor
+	// That is why we need a virtual destructor, so it can be overriden by its childs destructors
 	// more info :https://stackoverflow.com/questions/1123044/when-should-your-destructor-be-virtual
 	virtual ~Media(){}
 

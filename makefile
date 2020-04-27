@@ -1,4 +1,4 @@
-# makefile for multi-folder projetct
+# makefile for multi-folder projects
 
 CXX = g++
 OBJDIR = obj
