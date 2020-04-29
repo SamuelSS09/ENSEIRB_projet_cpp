@@ -18,6 +18,10 @@ main: $(obj)
 	@echo "LINKING OBJECTS"
 	$(CXX)  -o $@ $^
 
+test: $(obj) 
+	@echo "LINKING OBJECTS"
+	$(CXX)  -o $@ $^
+
 # overide of the compiler generated rules
 $(OBJDIR)/%.o: %.cpp
 	@echo "COMPILING SOURCE $< INTO OBJECT $@"
@@ -29,7 +33,7 @@ debug:
 
 .PHONY: #clean removes all .o files
 clean:
-	rm -f $(obj) main
+	rm -f $(obj) main test
 
 
 #Makefile for same folder

@@ -16,6 +16,7 @@ private:
 	string name;
 	string title;
 	string author;
+	string id;
 
 public:
 	//Constructors

@@ -37,6 +37,11 @@ public:
 	void delete_by_id();
 	void search_by_id();
 	void search_by_char(); // searches by a string
+
+	//this functions are not used outside the class
+	Media* media_from_string(string media_string);
 };
+
+vector<string> split_string(const string& s, char delimiter);
 
 #endif

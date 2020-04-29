@@ -5,8 +5,24 @@
 
 using namespace std;
 
-int main(){
+#include <sstream>      // std::istringstream
 
+
+
+
+
+// void test(){
+// // Construct an Media object from file test
+// 	string s = "to,no,quarto,po";
+// 	vector<string> ss = split_string(s,',');
+// 	for(string t: ss){
+// 	cout<<t<<endl;
+// 	}
+// }
+int main(){
+// test
+	// test();
+	Media *m;
 
 	return 0;
 //Test if media *ges destroied
