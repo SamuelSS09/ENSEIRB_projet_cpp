@@ -8,7 +8,7 @@ MediaController::~MediaController(){
 
 	for (int i=0;i<this->medias.size();i++){
  		delete this->medias.at(i);
- 	} 
+ 	}
 	this->medias.clear();
 }
 

@@ -1,9 +1,12 @@
 #include "Vhs.h"
 
-Vhs::Vhs(){}
+Vhs::Vhs():Media(){
+	length = 0;
+	producer = "";
+}
 
-Vhs::Vhs(string name,string title,string author,int length,string producer)
-: Media(name,title,author) {
+Vhs::Vhs(unsigned id, string name,string title,string author,int length,string producer)
+: Media(id,name,title,author) {
 	this->set_length(length);
 	this->set_producer(producer);
 }

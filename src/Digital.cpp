@@ -1,9 +1,13 @@
 #include "Digital.h"
 
-Digital::Digital(){}
+Digital::Digital():Media(){
+	extension = "";
+	path = "";
+	size = 0;
+}
 
-Digital::Digital(string name,string title,string author,string extension,string path,int size) 
-: Media(name,title,author) {
+Digital::Digital(unsigned id, string name,string title,string author,string extension,string path,int size)
+: Media(id,name,title,author) {
 	this->set_extension(extension);
 	this->set_path(path);
 	this->set_size(size);

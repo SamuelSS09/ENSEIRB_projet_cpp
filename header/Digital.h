@@ -19,7 +19,7 @@ private:
 public:
 	//Constructors
 	Digital();
-	Digital(string name,string title,string author,string extension,string path,int size);
+	Digital(unsigned id, string name,string title,string author,string extension,string path,int size);
 
 	// Destructors
 	// Class does not have pointers, so no memory leak

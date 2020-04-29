@@ -1,9 +1,11 @@
 #include "Dvd.h"
 
-Dvd::Dvd(){}
+Dvd::Dvd():Vhs(){
+	tracksNumber = 0;
+}
 
-Dvd::Dvd(string name,string title,string author,int length,string producer,int tracksNumber)
-: Vhs(name,title,author,length,producer) {
+Dvd::Dvd(unsigned id,string name,string title,string author,int length,string producer,int tracksNumber)
+: Vhs(id,name,title,author,length,producer) {
 	this->set_tracks_number(tracksNumber);
 }
 

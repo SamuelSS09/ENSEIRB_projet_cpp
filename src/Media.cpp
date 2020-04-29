@@ -2,10 +2,14 @@
 #include <iostream>
 
 Media::Media(){
-//empty constructor of the class
+	id = 0;
+	name = "";
+	author = "";
+	title = "";
 }
 
-Media::Media(string name,string title,string author){
+Media::Media(unsigned id, string name,string title,string author){
+	this->set_id(id);
 	this->set_name(name);
 	this->set_author(author);
 	this->set_title(title);

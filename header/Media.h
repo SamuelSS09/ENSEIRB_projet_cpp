@@ -13,6 +13,7 @@ using namespace std;
 class Media{
 private:
 
+	unsigned id;
 	string name;
 	string title;
 	string author;
@@ -20,7 +21,7 @@ private:
 public:
 	//Constructors
 	Media();
-	Media(string name,string title,string author);
+	Media(unsigned id, string name,string title,string author);
 
 
 	// Destructors
@@ -30,11 +31,13 @@ public:
 	virtual ~Media(){}
 
 	//Getters
+	unsigned get_id(){return this->id;}
 	string get_name(){return this->name;}
 	string get_title(){return this->title;}
 	string get_author(){return this->author;}
 
 	//Setters
+	void set_id(unsigned id){this->id=id;}
 	void set_author(string author){this->author=author;}
 	void set_title(string title){this->title=title;}
 	void set_name(string name){this->name=name;}
