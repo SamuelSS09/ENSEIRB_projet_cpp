@@ -1,8 +1,6 @@
 #include "Cd.h"
 
-Cd::Cd(){
-
-}
+Cd::Cd(){}
 
 Cd::Cd(string name,string title,string author,int length,string producer,int tracksNumber)
 : Vhs(name,title,author,length,producer) {

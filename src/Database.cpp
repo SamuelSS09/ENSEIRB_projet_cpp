@@ -5,23 +5,27 @@ bool Database::check_file(){
 	return fileManager.good();
 }
 
-vector<Books*> Database::read_media_database(){
+vector<string> Database::read_database(){
+
+//OBS1: should not create duplicated Media.
 //steps 1: make sure the file exists
 //step N: close file
 
-	vector<Medias*> medias;
-	string line; // represents each line of the file
-	int inter = 0; // we need the first iteration
-	if(this->check_file()){ // check if file is correctly oppened
-		while(!fileManager.eof){ //until the end of the file
+	vector<string> strings;
+	string line;   					// represents each line of the file
+	if(this->check_file()){ 		// check if file is correctly oppened
+		while(!fileManager.eof()){ 	// until the end of the file
 			getline(fileManager,line);
+			strings.push_back(line);
 		}
 	}
-	
-	return medias;
+
+	fileManager.close();
+
+	return strings;
 }
 
-void Database::write_database(){
+void Database::write_database(vector<string> lines){
 
 
 }

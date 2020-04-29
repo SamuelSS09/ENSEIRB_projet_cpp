@@ -2,6 +2,7 @@
 #define BOOK_H
 
 #include "Media.h"
+#include <iostream>
 
 // READ ME -----------------------------------------------------------------
 
@@ -22,6 +23,8 @@ public:
 	// Class does not have pointers, so no memory leak
 	// is likely. Therefore, no need to change the default
 	// destructor.
+
+	// LINE WAS USED FOR DEBUG: ~Book(){cout << "destruit" << endl;}
 
 	//Getters
 	string get_summary(){return this->summary;}
