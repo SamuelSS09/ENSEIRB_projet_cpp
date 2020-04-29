@@ -2,7 +2,11 @@
 #define MEDIA_H
 
 #include <string>
+#include <vector>
+#include <sstream>
+
 using namespace std;
+
 
 // READ ME -----------------------------------------------------------------
 
@@ -14,16 +18,15 @@ class Media{
 private:
 
 	unsigned id;
-	string name;
 	string title;
 	string author;
 
 public:
 	//Constructors
 	Media();
-	Media(unsigned id, string name,string title,string author);
-
-
+	Media(unsigned id,string title,string author);
+	Media(vector<string> attributs);
+	
 	// Destructors
 	// This class is abstract, so we want to call the destructors of its childs.
 	// That is why we need a virtual destructor, so it can be overriden by its childs destructors
@@ -32,7 +35,6 @@ public:
 
 	//Getters
 	unsigned get_id(){return this->id;}
-	string get_name(){return this->name;}
 	string get_title(){return this->title;}
 	string get_author(){return this->author;}
 
@@ -40,10 +42,11 @@ public:
 	void set_id(unsigned id){this->id=id;}
 	void set_author(string author){this->author=author;}
 	void set_title(string title){this->title=title;}
-	void set_name(string name){this->name=name;}
 
 	//Other functions
 	virtual string to_string() = 0; // Pure virtual function
+	void init(unsigned id, string title,string author);
+
 };
 
 #endif

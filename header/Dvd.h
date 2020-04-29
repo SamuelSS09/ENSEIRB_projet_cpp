@@ -15,7 +15,7 @@ private:
 public:
 	//Constructors
 	Dvd();
-	Dvd(unsigned id, string name,string title,string author,int length,string producer,int tracksNumber);
+	Dvd(unsigned id,string title,string author,int length,string producer,int tracksNumber);
 
 	// Destructors
 	// Class does not have pointers, so no memory leak

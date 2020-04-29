@@ -1,0 +1,5 @@
+-L'interet de faire un attribut static pour id?
+
+- A FAIRE:
+	- traiter des stoi (catch expection)
+	- changer les to_string par un autre nome puisque il existe déjà std::to_string()

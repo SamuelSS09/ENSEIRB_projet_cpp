@@ -1,7 +1,9 @@
 #ifndef MEDIACONTROLLER_H
 #define MEDIACONTROLLER_H
 
-#include "Media.h"
+#include "Review.h"
+#include "Dvd.h"
+#include "Cd.h"
 #include "Database.h"
 
 using namespace std;
@@ -18,7 +20,7 @@ private:
 	Database db;
 public: 
 	// Constructors
-	MediaController(){}
+	MediaController();
 	MediaController(string filename);
 
 	//Destructors:
@@ -30,6 +32,8 @@ public:
 	//setters
 	void set_db_filename(string filename){this->db.set_filename(filename);}
 	void set_medias(vector<Media*> medias){this->medias = medias;}
+	Media* media_from_string(string media_string);
+
 
 	//other functions
 	void load_media();

@@ -1,1 +1,0 @@
--L'interet de faire un attribut static pour id?

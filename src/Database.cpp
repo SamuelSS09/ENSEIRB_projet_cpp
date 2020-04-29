@@ -1,5 +1,7 @@
 #include "Database.h"
 
+#include <iostream>
+
 bool Database::check_file(){
 	this->fileManager.open(filename);
 	return fileManager.good();

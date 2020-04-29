@@ -3,19 +3,28 @@
 
 Media::Media(){
 	id = 0;
-	name = "";
 	author = "";
 	title = "";
 }
-
-Media::Media(unsigned id, string name,string title,string author){
+void Media::init(unsigned id, string title,string author){
 	this->set_id(id);
-	this->set_name(name);
 	this->set_author(author);
 	this->set_title(title);
 }
 
 
-// string Media::to_string(){
-// 	return "should have a string";
-// }
+Media::Media(unsigned id, string title,string author){
+	this->init(id,title,author);
+}
+
+Media::Media(vector<string> attributs){
+	this->init(stoi(attributs.at(1)),attributs.at(2),attributs.at(3));
+}
+
+
+// Method 1: 
+//Media::Media(vector<string> attributs)
+// : Media(stoi(attributs.at(0)), attributs.at(1), attributs.at(2),attributs.at(3)){}
+
+
+

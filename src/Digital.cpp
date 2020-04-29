@@ -6,8 +6,8 @@ Digital::Digital():Media(){
 	size = 0;
 }
 
-Digital::Digital(unsigned id, string name,string title,string author,string extension,string path,int size)
-: Media(id,name,title,author) {
+Digital::Digital(unsigned id,string title,string author,string extension,string path,int size)
+: Media(id,title,author) {
 	this->set_extension(extension);
 	this->set_path(path);
 	this->set_size(size);
