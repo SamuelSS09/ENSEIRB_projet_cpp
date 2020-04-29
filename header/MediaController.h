@@ -2,6 +2,7 @@
 #define MEDIACONTROLLER_H
 
 #include "Review.h"
+#include "Digital.h"
 #include "Dvd.h"
 #include "Cd.h"
 #include "Database.h"
@@ -40,7 +41,7 @@ public:
 	void write_media();
 	void delete_by_id();
 	void search_by_id();
-	void search_by_char(); // searches by a string
+	void search_by_string(); // searches by a string
 };
 
 #endif

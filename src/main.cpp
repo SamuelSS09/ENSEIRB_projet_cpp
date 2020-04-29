@@ -8,6 +8,7 @@ using namespace std;
 void test_book_from_file(){
 	MediaController m("database/media_database.txt");
 	m.load_media();
+	m.write_media();
 	cout << m.get_medias().at(0)->to_string() << endl;
 }
 
@@ -28,7 +29,7 @@ void test_vector_string_constructor(){
 
 	Review b(s);
 	cout << b.to_string() << endl;
-	cout << b.get_articles().size() << endl;
+	// cout << b.get_articles().size() << endl;
 }
 
 int main(){

@@ -1,1 +1,2 @@
 0,10,Sertão,Amado,44444,500,Bresil,Bresil ancienne
+1,10,Sertão,Amado,44444,500,Bresil,Bresil ancienne,Editeur abs,article 1;article 2

@@ -33,8 +33,12 @@ string Review::to_string(){
 
 	string s    = book + "," + this->get_editor() + ",";
 
-	for (int i = 0; i< this->articles.size();i++){
-		s = s + articles.at(i) + ";";
+	for (int i = 0; i< this->articles.size() -1 ;i++){
+		s = s + articles.at(i) + ",";
+	}
+
+	if(articles.size() > 0){ // avoid "," at the end
+		s = s + articles.back();
 	}
 
 	return s;

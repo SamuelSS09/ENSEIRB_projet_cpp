@@ -3,3 +3,5 @@
 - A FAIRE:
 	- traiter des stoi (catch expection)
 	- changer les to_string par un autre nome puisque il existe déjà std::to_string()
+	- places les constants et fonctions Helpers dans un seul fichier
+	- Check pour medias dupliqués sur la classe MediaController (methode load_media())

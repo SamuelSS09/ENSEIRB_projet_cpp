@@ -35,7 +35,7 @@ class Database {
 
 private: 
 	string filename;
-	ifstream fileManager;
+	fstream fileManager;
 
 public: 
 	//Constructors

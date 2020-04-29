@@ -4,7 +4,7 @@
 
 bool Database::check_file(){
 	this->fileManager.open(filename);
-	return fileManager.good();
+	return fileManager.is_open();
 }
 
 vector<string> Database::read_database(){
@@ -20,14 +20,23 @@ vector<string> Database::read_database(){
 			getline(fileManager,line);
 			strings.push_back(line);
 		}
+		fileManager.close();
 	}
 
-	fileManager.close();
+	
 
 	return strings;
 }
 
 void Database::write_database(vector<string> lines){
-
-
+	if(this->check_file()){
+		for(int i = 0; i < lines.size() - 1; i++){
+			fileManager << lines.at(i) << endl;
+		}
+		if(lines.size() > 0 ){ // to avoid  a blank line at end of file
+			fileManager << lines.back();
+		}
+		fileManager.close();
+	}
+	
 }
