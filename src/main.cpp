@@ -22,15 +22,19 @@ void test_vector_string_constructor(){
 	s.push_back("500");
 	s.push_back("Bresil");
 	s.push_back("Bresil ancienne");
+	s.push_back("Editeur abs");
+	s.push_back("article 1");
+	s.push_back("article 2");
 
-	Book b(s);
+	Review b(s);
 	cout << b.to_string() << endl;
-
+	cout << b.get_articles().size() << endl;
 }
 
 int main(){
 
 	test_book_from_file();
+	test_vector_string_constructor();
 
 	return 0;
 //Test if media *ges destroied

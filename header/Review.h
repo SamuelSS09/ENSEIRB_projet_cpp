@@ -4,6 +4,7 @@
 #include "Book.h"
 #include <vector>
 
+using namespace std;
 // READ ME -----------------------------------------------------------------
 
 // -------------------------------------------------------------------------
@@ -16,7 +17,7 @@ public:
 	//Constructors
 	Review();
 	Review(unsigned id, string title,string author, int publishingYear, int numberOfPages, string summary,string collection,string editor, vector<string>articles);
-
+	Review(vector<string> attributs);
 	// Destructors
 	// Class does not have pointers, so no memory leak
 	// is likely. Therefore, no need to change the default
@@ -30,7 +31,7 @@ public:
 	//Setters
 	void set_editor(string editor){this->editor=editor;}
 	void set_articles(vector<string> articles){this->articles=articles;}
-
+	void init(string editor, std::vector<string> articles);
 	//Other functions
 	string to_string();
 
