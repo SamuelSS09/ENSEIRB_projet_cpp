@@ -14,14 +14,14 @@ Library::~Library(){
  		delete this->medias.at(i);
  	} 
 	this->medias.clear();
+
+	cout << "é nois" << endl;
 }
 
 void Library::load_media(){
-	
    vector<string> media_string = this->db.read_database();
    for(int i = 0; i < media_string.size(); i++){
    	//OBS1: should not create duplicated Media.
-   	// cout << "to aqui" << endl;
       this->medias.push_back(this->media_from_string(media_string.at(i)));
    }
 

@@ -31,7 +31,8 @@ public:
 	// This class is abstract, so we want to call the destructors of its childs.
 	// That is why we need a virtual destructor, so it can be overriden by its childs destructors
 	// more info :https://stackoverflow.com/questions/1123044/when-should-your-destructor-be-virtual
-	virtual ~Media(){}
+	
+	virtual ~Media(){};
 
 	//Getters
 	unsigned get_id(){return this->id;}
@@ -44,7 +45,7 @@ public:
 	void set_title(string title){this->title=title;}
 
 	//Other functions
-	virtual string to_string() = 0; // Pure virtual function
+	virtual string to_string() = 0; //pure virtual function => Abstract Class
 	void init(unsigned id, string title,string author);
 
 };

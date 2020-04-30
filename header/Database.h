@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <exception>
 
 using namespace std;
 //should include all classes from the root of the inheritance tree
@@ -49,9 +50,9 @@ public:
 	void set_filename(string filename){this->filename=filename;}
 
 	//other functions
-	vector<string> read_database();
+	vector<string> read_database() throw (std::exception);
 
-	void write_database(vector<string> lines);
+	void write_database(vector<string> lines) throw (std::exception);
 
 	bool check_file(); // TRUE if file is open successfully. FALSE otherwise
 

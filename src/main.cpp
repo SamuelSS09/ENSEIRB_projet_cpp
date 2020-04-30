@@ -4,6 +4,18 @@
 
 using namespace std;
 
+void test_exception(){
+
+	try{
+		Database d("je_existe_pas.txt");
+		vector<string> s = d.read_database();
+
+	}catch(...){
+		// cerr << s.size() << endl;
+	}
+	
+}
+
 void test_main_controller(){
 	// test with: LOAD database/media_database.txt
 	MainController m("database/media_database.txt");
@@ -43,10 +55,11 @@ void test_vector_string_constructor(){
 }
 
 int main(){
-	test_main_controller();
+	//test_exception();
+	// test_main_controller();
 	//test_interface();
 
-	// test_vector_string_constructor();
+	test_vector_string_constructor();
 
 	return 0;
 //Test if media *ges destroied

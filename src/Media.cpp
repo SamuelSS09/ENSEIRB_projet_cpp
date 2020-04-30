@@ -1,6 +1,8 @@
 #include "Media.h"
 #include <iostream>
 
+const string class_index = "X";
+
 Media::Media(){
 	id = 0;
 	author = "";
@@ -20,6 +22,10 @@ Media::Media(unsigned id, string title,string author){
 Media::Media(vector<string> attributs){
 	this->init(stoi(attributs.at(1)),attributs.at(2),attributs.at(3));
 }
+
+string Media::to_string(){
+	return class_index + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
+} 
 
 
 // Method 1: 

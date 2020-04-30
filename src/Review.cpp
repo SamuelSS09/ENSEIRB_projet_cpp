@@ -27,6 +27,7 @@ Review::Review(vector<string> attributs)
 string Review::to_string(){
 
 	string book = Book::to_string();
+	
 	int position_at_str = 0;
 	int length_of_char = 1;
 	book.replace(position_at_str,length_of_char,class_index);

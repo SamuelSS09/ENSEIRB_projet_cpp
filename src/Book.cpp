@@ -2,7 +2,7 @@
 // #include "helper.h"
 
 
-const string book_index = "0";
+const string class_index = "0";
 
 Book::Book():Media(){
 	summary = "";
@@ -35,7 +35,14 @@ Book::Book(vector<string> attributs)
 
 
 string Book::to_string(){
-	string s = book_index + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
+	string s = Media::to_string();
+
+	//replace class index
+	int position_at_str = 0;
+	int length_of_char = 1;
+	s.replace(position_at_str,length_of_char,class_index);
+
+	//continu to build string
 	s 	     = s + std::to_string(get_publishing_year()) + "," + std::to_string(get_number_of_pages()) + ",";
 	s   	 = s + get_summary() + "," + get_collection();
 	return s;
