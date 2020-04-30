@@ -1,6 +1,8 @@
 #include "Book.h"
+// #include "helper.h"
 
-const string class_index = "0";
+
+const string book_index = "0";
 
 Book::Book():Media(){
 	summary = "";
@@ -33,7 +35,7 @@ Book::Book(vector<string> attributs)
 
 
 string Book::to_string(){
-	string s = class_index + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
+	string s = book_index + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
 	s 	     = s + std::to_string(get_publishing_year()) + "," + std::to_string(get_number_of_pages()) + ",";
 	s   	 = s + get_summary() + "," + get_collection();
 	return s;

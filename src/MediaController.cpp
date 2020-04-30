@@ -1,5 +1,7 @@
 #include "MediaController.h"
+#include "helper.h"
 #include <iostream>
+
 char char_delimiter = ',';
 
 
@@ -84,8 +86,6 @@ Media* MediaController::media_from_string(string media_string){
 	// <vector> articles ...
 
 	// SI Digital
-
-
 
 	switch(media_index){
 

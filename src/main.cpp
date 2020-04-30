@@ -2,8 +2,14 @@
 
 #include "MediaController.h"
 #include "Review.h"
+#include "Interface.h"
 
 using namespace std;
+
+void test_interface(){
+	Interface i;
+	std::vector<string> v = i.show_main_menu();
+}
 
 void test_book_from_file(){
 	MediaController m("database/media_database.txt");
@@ -33,9 +39,9 @@ void test_vector_string_constructor(){
 }
 
 int main(){
-
-	test_book_from_file();
-	test_vector_string_constructor();
+	test_interface();
+	// test_book_from_file();
+	// test_vector_string_constructor();
 
 	return 0;
 //Test if media *ges destroied
