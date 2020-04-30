@@ -1,26 +1,14 @@
-#include "MediaController.h"
+#include "Library.h"
 #include "helper.h"
 #include <iostream>
 
 char char_delimiter = ',';
 
-
-vector<string> split_string(const std::string& s, char delimiter){
-   vector<std::string> tokens;
-   string token;
-   istringstream tokenStream(s);
-   while (std::getline(tokenStream, token, delimiter))
-   {
-      tokens.push_back(token);
-   }
-   return tokens;
-}
-
-MediaController::MediaController(string filename){
+Library::Library(string filename){
 	this->db.set_filename(filename);
 }
 
-MediaController::~MediaController(){
+Library::~Library(){
 
 	for (int i=0;i<this->medias.size();i++){
  		delete this->medias.at(i);
@@ -28,7 +16,7 @@ MediaController::~MediaController(){
 	this->medias.clear();
 }
 
-void MediaController::load_media(){
+void Library::load_media(){
 	
    vector<string> media_string = this->db.read_database();
    for(int i = 0; i < media_string.size(); i++){
@@ -38,7 +26,7 @@ void MediaController::load_media(){
    }
 
 }
-void MediaController::write_media(){
+void Library::write_media(){
 	std::vector<string> lines;
 	for(int i = 0; i < this->medias.size() ; i++){
 	
@@ -46,20 +34,20 @@ void MediaController::write_media(){
 	}
 	this->db.write_database(lines);
 }
-void MediaController::delete_by_id(){
+void Library::delete_by_id(){
 
 }
-void MediaController::search_by_id(){
+void Library::search_by_id(){
 
 }
-void MediaController::search_by_string(){
+void Library::search_by_string(){
 
 }
 
-Media* MediaController::media_from_string(string media_string){
+Media* Library::media_from_string(string media_string){
 
 	Media *media;
-	vector<string> attributs = split_string(media_string,char_delimiter);
+	vector<string> attributs = helper::split_string(media_string,char_delimiter);
 	// CATCH EXCEPTION //////
 	int media_index = stoi(attributs.at(0));
 	// CATCH EXCEPTION

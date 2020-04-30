@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "MediaController.h"
+#include "Library.h"
 #include "Review.h"
 #include "Interface.h"
 
@@ -12,7 +12,7 @@ void test_interface(){
 }
 
 void test_book_from_file(){
-	MediaController m("database/media_database.txt");
+	Library m("database/media_database.txt");
 	m.load_media();
 	m.write_media();
 	cout << m.get_medias().at(0)->to_string() << endl;
@@ -39,8 +39,8 @@ void test_vector_string_constructor(){
 }
 
 int main(){
-	test_interface();
-	// test_book_from_file();
+	//test_interface();
+	test_book_from_file();
 	// test_vector_string_constructor();
 
 	return 0;

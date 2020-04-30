@@ -4,6 +4,6 @@
 	- traiter des stoi (catch expection)
 	- changer les to_string par un autre nome puisque il existe déjà std::to_string()
 	- places les constants et fonctions Helpers dans un seul fichier
-	- Check pour medias dupliqués sur la classe MediaController (methode load_media())
+	- Check pour medias dupliqués sur la classe Library (methode load_media())
 	- determiner quels methodes seront privées
 	- faire un namespace avec des constants et des fonctions outils

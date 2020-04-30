@@ -1,5 +1,5 @@
-#ifndef MEDIACONTROLLER_H
-#define MEDIACONTROLLER_H
+#ifndef LIBRARY_H
+#define LIBRARY_H
 
 #include "Review.h"
 #include "Digital.h"
@@ -8,7 +8,7 @@
 #include "Database.h"
 
 
-
+#include "helper.h"
 using namespace std;
 
 // READ ME -----------------------------------------------------------------
@@ -17,17 +17,17 @@ using namespace std;
 // TEST IF AN 
 // -------------------------------------------------------------------------
 
-class MediaController {
+class Library {
 private:
 	vector<Media*> medias;
 	Database db;
 public: 
 	// Constructors
-	MediaController();
-	MediaController(string filename);
+	Library();
+	Library(string filename);
 
 	//Destructors:
-	~MediaController();
+	~Library();
 
 	//getters
 	vector<Media*> get_medias(){return this->medias;}
