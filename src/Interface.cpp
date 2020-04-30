@@ -25,7 +25,7 @@ Interface::Interface(){
 	this->add_possible_options("RESET,0");
 }
 
-vector<string> Interface::show_main_menu(){
+vector<string> Interface::get_user_command(){
 
 	cout << "Bienvenu(e) à l'application de management de la librairie! " << endl;
 	cout << "Veuillez utiliser une des options suivants: " << endl;

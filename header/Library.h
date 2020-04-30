@@ -23,7 +23,7 @@ private:
 	Database db;
 public: 
 	// Constructors
-	Library();
+	Library(){};
 	Library(string filename);
 
 	//Destructors:

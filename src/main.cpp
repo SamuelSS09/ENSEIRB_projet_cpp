@@ -1,14 +1,18 @@
 #include <iostream>
 
-#include "Library.h"
-#include "Review.h"
-#include "Interface.h"
+#include "MainController.h"
 
 using namespace std;
 
+void test_main_controller(){
+	// test with: LOAD database/media_database.txt
+	MainController m("database/media_database.txt");
+	m.start_program();
+}
+
 void test_interface(){
 	Interface i;
-	std::vector<string> v = i.show_main_menu();
+	std::vector<string> v = i.get_user_command();
 }
 
 void test_book_from_file(){
@@ -39,8 +43,9 @@ void test_vector_string_constructor(){
 }
 
 int main(){
+	test_main_controller();
 	//test_interface();
-	test_book_from_file();
+
 	// test_vector_string_constructor();
 
 	return 0;

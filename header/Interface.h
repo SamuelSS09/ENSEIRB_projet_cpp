@@ -33,7 +33,7 @@ public:
 	Interface();
 
 	//other functions
-	vector<string> show_main_menu();
+	vector<string> get_user_command();
 
 
 	//Destructor
