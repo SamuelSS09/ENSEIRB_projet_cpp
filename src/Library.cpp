@@ -18,7 +18,7 @@ Library::~Library(){
 
 vector<Media*> Library::get_medias(){ // 
 	//this->myMediaInterface.show_header();
-	if(this->search_indexes.size() != 0){ // if there was no previous search
+	if(this->search_indexes.size() == 0){ // if there was no previous search
 		return this->medias;
 	}
 
@@ -107,4 +107,3 @@ Media* Library::media_from_string(string media_string){
 
  	return media;
 }
-
