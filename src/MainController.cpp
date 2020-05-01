@@ -1,7 +1,21 @@
 #include "MainController.h"
 
 MainController::MainController(string filename){
-	this->myLibrary.set_db_filename(filename);
+	//setlocale(LC_ALL, "french");
+	this->load_my_database(filename);
+   
+}
+
+void MainController::load_my_database(string filename){
+	 this->myLibrary.set_db_filename(filename);
+
+	try{
+		this->myLibrary.load_media();
+		//AFICHER UNE MESSAGE
+	}catch(exception e){
+		// this line must be a method of the interface class.
+		cerr << "Le fichier n'a pas pu être ouverte" << endl;
+	}
 }
 
 void MainController::start_program(){
@@ -14,22 +28,32 @@ void MainController::start_program(){
 	}
 
 	else if (command == "LOAD"){
+
+		//string original_filename = this->myLibrary.get_filename();
+
 		this->myLibrary.set_db_filename(user_input.at(1));
 		try{
 			this->myLibrary.load_media();
+			//AFICHER UNE MESSAGE
+			this->start_program();
 		}catch(exception e){
-
 			// this line must be a method of the interface class.
 			cerr << "Le fichier n'a pas pu être ouverte" << endl;
-			
+			//this->load_my_database(original_filename);
 			this->start_program();
+
 		}
-		// Just for testing
-		//cout << this->myLibrary.get_medias().at(0)->to_string() << endl;
 	}
 
-	else if (command == "LIST"){
-		
+	else if (command == "SEARCH"){
+		if(this->myLibrary.search_by_string(user_input.at(1))){
+			//should list all the found media?
+		}
+
+		else{
+
+		}
 	}
 
 }
+

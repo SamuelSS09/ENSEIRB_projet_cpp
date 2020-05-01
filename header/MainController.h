@@ -13,6 +13,7 @@ private:
 
 	//helper functions
 	void load_filename();
+	void load_my_database(string filename);
 public:
 	//Constructor
 	MainController();

@@ -23,17 +23,19 @@ Interface::Interface(){
 	this->add_possible_options("ADD,1");
 	this->add_possible_options("LOAD,1");
 	this->add_possible_options("RESET,0");
+	this->add_possible_options("SEARCH,1");
 }
 
 vector<string> Interface::get_user_command(){
 
 	cout << "Bienvenu(e) à l'application de management de la librairie! " << endl;
 	cout << "Veuillez utiliser une des options suivants: " << endl;
-	cout << "X - LOAD filename : charger la médiathèque avec le fichier nomé filename" << endl;
+	cout << "- LOAD filename : charger la médiathèque avec le fichier nomé filename" << endl;
+	cout << "- SEARCH chaine : chercher la médiathèque avec la chaine fournue" << endl;
 	
 	vector<string> optionSplit = helper::split_string(this->get_user_input(),' ');	
 
-
+	
 	while(cin.bad() || !(this->validate_option(optionSplit)) ){
 
 		cout << "Veuillez inserer une option valide " << endl;

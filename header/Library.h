@@ -20,6 +20,10 @@ using namespace std;
 class Library {
 private:
 	vector<Media*> medias;
+	vector<int> search_indexes; // in case of a SEARCH, this vector contains 
+								// which are the indexes of the elements in the 
+								// first vector that satisfies the criteria of the
+								// search  
 	Database db;
 public: 
 	// Constructors
@@ -43,7 +47,7 @@ public:
 	void write_media();
 	void delete_by_id();
 	void search_by_id();
-	void search_by_string(); // searches by a string
+	bool search_by_string(string character_sequence); // searches by a string
 };
 
 #endif

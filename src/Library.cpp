@@ -14,8 +14,6 @@ Library::~Library(){
  		delete this->medias.at(i);
  	} 
 	this->medias.clear();
-
-	cout << "é nois" << endl;
 }
 
 void Library::load_media(){
@@ -40,8 +38,23 @@ void Library::delete_by_id(){
 void Library::search_by_id(){
 
 }
-void Library::search_by_string(){
+bool Library::search_by_string(string character_sequence){
 
+	bool isFound = false; // check if the search was sucessfull;
+	for(int i = 0; i < this->medias.size(); i++){ // iterate the media vector
+	
+		string mediaString = medias.at(i)->to_string();
+
+		if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
+    		
+    		if(mediaString.find(character_sequence) != std::string::npos){
+    			this->search_indexes.push_back(i);
+    			isFound = true; // the search found a match
+    		}
+		}
+	}
+
+	return isFound;
 }
 
 Media* Library::media_from_string(string media_string){
@@ -52,28 +65,6 @@ Media* Library::media_from_string(string media_string){
 	int media_index = stoi(attributs.at(0));
 	// CATCH EXCEPTION
 
-	//0:Book
-	//1:Review
-	//2 Digital
-	//3:VHS
-	//4:Cd
-	//5:Dvd
-
-	// class_id
-	//id
-   //title
-	//author
-	
-	//SI livre:
-   //publishing_year
-   //number_of_pages
-	//summary
-	//collection
-	
-	// editor
-	// <vector> articles ...
-
-	// SI Digital
 
 	switch(media_index){
 
@@ -83,17 +74,17 @@ Media* Library::media_from_string(string media_string){
 		case 1 :	media = new Review(attributs);
 					break;
 
-		// case 2 : 	media = new Digital(attributs);
-		// 			break;
+		case 2 : 	media = new Digital(attributs);
+		 			break;
 
-		// case 3 : 	media = new Vhs(attributs);
-		// 			break;
+		case 3 : 	media = new Vhs(attributs);
+		 			break;
 
-		// case 4 : 	media = new Cd(attributs);
-		// 			break;
+		case 4 : 	media = new Cd(attributs);
+		 			break;
 
-		// case 5 : 	media = new Dvd(attributs);
-		// 			break;
+		case 5 : 	media = new Dvd(attributs);
+		 			break;
 				   	   
 		default: 	media = NULL; // pas de media a construire
 				    break; 
@@ -101,4 +92,3 @@ Media* Library::media_from_string(string media_string){
 
  	return media;
 }
-

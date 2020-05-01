@@ -8,3 +8,4 @@
 	- determiner quels methodes seront privées
 	- faire un namespace avec des constants et des fonctions outils
 	- verifier les destructeurs
+	- peut-etre que sera mieux faire la MediaInterface, et la mettre dans la classe Librairie. Dans ce cas, les methodes de gestion du MainController serions des methodes de la Librairie

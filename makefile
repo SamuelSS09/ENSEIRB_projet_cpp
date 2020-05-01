@@ -17,6 +17,9 @@ obj = $(subst $(VPATH), $(OBJDIR), $(src:.cpp=.o)) # replaces .cpp extention to 
 main: $(obj) 
 	@echo "LINKING OBJECTS"
 	$(CXX)  -o $@ $^
+	
+exec: main
+	./main
 
 # overide of the compiler generated rules
 $(OBJDIR)/%.o: %.cpp

@@ -4,6 +4,12 @@
 
 using namespace std;
 
+
+void test_search_by_string(){
+	Library l("database/media_database.txt");
+	l.load_media();
+}
+
 void test_exception(){
 
 	try{
@@ -56,10 +62,10 @@ void test_vector_string_constructor(){
 
 int main(){
 	//test_exception();
-	// test_main_controller();
+	test_main_controller();
 	//test_interface();
-
-	test_vector_string_constructor();
+	//test_search_by_string();
+		
 
 	return 0;
 //Test if media *ges destroied

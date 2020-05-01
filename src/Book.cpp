@@ -42,7 +42,7 @@ string Book::to_string(){
 	int length_of_char = 1;
 	s.replace(position_at_str,length_of_char,class_index);
 
-	//continu to build string
+	//continue to build string
 	s 	     = s + std::to_string(get_publishing_year()) + "," + std::to_string(get_number_of_pages()) + ",";
 	s   	 = s + get_summary() + "," + get_collection();
 	return s;
