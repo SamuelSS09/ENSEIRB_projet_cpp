@@ -6,6 +6,8 @@ using namespace std;
 
 
 void test_multi_id(){
+
+
 	Media* a = new Book();
 	Media* b = new Review();
 	Media* c = new Digital();
@@ -85,9 +87,9 @@ void test_vector_string_constructor(){
 }
 
 int main(){
-	//test_multi_id();
+	test_multi_id();
 	//test_exception();
-	test_main_controller();
+	//test_main_controller();
 	//test_interface();
 	//test_search_by_string();
 		

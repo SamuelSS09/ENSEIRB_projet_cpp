@@ -1,6 +1,6 @@
 #include "Media.h"
 
-const string class_index = "X";
+const string class_index = "X"; //not supposed to be instantiated
 unsigned Media::nextID = 0;
 
 void Media::init(unsigned id, string title, string author){

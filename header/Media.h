@@ -9,21 +9,35 @@ using namespace std;
 
 
 // READ ME -----------------------------------------------------------------
+// UNIQUE ID:
+// the unique id is implemented using the static variable nextID, which is shared
+// accros every instance of the object and its childs.
+// If we construct an object, this variable is incremented. In case we conctruct
+// it from a file, we make sure that if any of the found IDs are greater than 
+// the nextID, we change its value so it can start couting from the greatest id found
+// and therefore avoid duplicate IDs. We also make sure to decrement the variable
+// when an instance of the class is destroyed.
 
 // This is an ABSTRACT CLASS, and as such cannot be instantiated
 // This is seem from the pure virtual function to_string
+
+//
+
 // -------------------------------------------------------------------------
 
 
 class Media{
 protected: // can be accesed by the child classes
-	static unsigned nextID;// counter for the unique id
 
 private:
-
+	static unsigned nextID;// counter for the unique id
 	unsigned id;
 	string title;
 	string author;
+
+	void set_id(unsigned id){this->id=id;}
+
+
 
 public:
 	//Constructors
@@ -44,7 +58,6 @@ public:
 	string get_author(){return this->author;}
 
 	//Setters
-	void set_id(unsigned id){this->id=id;}
 	void set_author(string author){this->author=author;}
 	void set_title(string title){this->title=title;}
 
