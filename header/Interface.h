@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <helper.h>
+#include "Library.h"
 
 using namespace std;
 // using std::cout;
@@ -34,13 +35,14 @@ public:
 
 	//other functions
 	vector<string> get_user_command();
-
+	void list_media(std::vector<Media*> medias);
 
 	//Destructor
 
 	//getters
 
 	//setters
+
 	void add_possible_options(string option);
 
 };

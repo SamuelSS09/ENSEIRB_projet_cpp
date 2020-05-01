@@ -29,20 +29,23 @@ void MainController::start_program(){
 
 	else if (command == "LOAD"){
 
-		//string original_filename = this->myLibrary.get_filename();
-
+		string original_filename = this->myLibrary.get_db_filename();
 		this->myLibrary.set_db_filename(user_input.at(1));
+
 		try{
+
 			this->myLibrary.load_media();
 			//AFICHER UNE MESSAGE
-			this->start_program();
+
 		}catch(exception e){
+
+			this->myLibrary.set_db_filename(original_filename);
+			this->myLibrary.load_media();
 			// this line must be a method of the interface class.
 			cerr << "Le fichier n'a pas pu être ouverte" << endl;
-			//this->load_my_database(original_filename);
-			this->start_program();
 
 		}
+		this->start_program();
 	}
 
 	else if (command == "SEARCH"){
@@ -53,6 +56,12 @@ void MainController::start_program(){
 		else{
 
 		}
+		this->start_program();
+	}
+
+	else if(command == "LIST"){
+		this->myInterface.list_media(this->myLibrary.get_medias());
+		this->start_program();
 	}
 
 }

@@ -16,6 +16,21 @@ Library::~Library(){
 	this->medias.clear();
 }
 
+vector<Media*> Library::get_medias(){ // 
+	//this->myMediaInterface.show_header();
+	if(this->search_indexes.size() != 0){ // if there was no previous search
+		return this->medias;
+	}
+
+	else{ // if there was a previous search
+		vector<Media*> medias_filtered;
+		for(int i : this->search_indexes){
+			medias_filtered.push_back(this->medias.at(i));
+		}
+		return medias_filtered;
+	}
+}
+
 void Library::load_media(){
    vector<string> media_string = this->db.read_database();
    for(int i = 0; i < media_string.size(); i++){
@@ -53,7 +68,6 @@ bool Library::search_by_string(string character_sequence){
     		}
 		}
 	}
-
 	return isFound;
 }
 
@@ -61,6 +75,7 @@ Media* Library::media_from_string(string media_string){
 
 	Media *media;
 	vector<string> attributs = helper::split_string(media_string,char_delimiter);
+	
 	// CATCH EXCEPTION //////
 	int media_index = stoi(attributs.at(0));
 	// CATCH EXCEPTION
@@ -92,3 +107,4 @@ Media* Library::media_from_string(string media_string){
 
  	return media;
 }
+

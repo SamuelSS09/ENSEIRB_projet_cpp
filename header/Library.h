@@ -34,15 +34,16 @@ public:
 	~Library();
 
 	//getters
-	vector<Media*> get_medias(){return this->medias;}
+	vector<Media*> get_medias();
+	string get_db_filename(){return this->db.get_filename();}
+
 
 	//setters
 	void set_db_filename(string filename){this->db.set_filename(filename);}
 	void set_medias(vector<Media*> medias){this->medias = medias;}
 	Media* media_from_string(string media_string);
 
-
-	//other functions
+	//
 	void load_media();
 	void write_media();
 	void delete_by_id();

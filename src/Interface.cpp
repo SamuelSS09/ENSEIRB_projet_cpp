@@ -5,6 +5,17 @@ void Interface::add_possible_options(string option){
 	this->possible_options.push_back(option);
 }
 
+void Interface::list_media(std::vector<Media*> medias){
+	cout << "ID              " << "TITRE            " <<"AUTEUR            " << endl;
+	for(int i = 0; i < medias.size() ; i++){
+		cout << medias.at(i)->get_id() << "            ";
+		cout << medias.at(i)->get_title() << "            ";
+		cout << medias.at(i)->get_author() << "            ";
+		cout << endl;
+	}
+
+}
+
 string Interface::get_user_input(){
 	cin.clear();
 	string option;
@@ -20,10 +31,12 @@ string Interface::get_user_input(){
 
 Interface::Interface(){
 	this->add_possible_options("BYE,0");
+	this->add_possible_options("LIST,0");
 	this->add_possible_options("ADD,1");
 	this->add_possible_options("LOAD,1");
 	this->add_possible_options("RESET,0");
 	this->add_possible_options("SEARCH,1");
+
 }
 
 vector<string> Interface::get_user_command(){
