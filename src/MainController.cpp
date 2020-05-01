@@ -27,6 +27,11 @@ void MainController::start_program(){
 		//this->myInterface.show_goodbye();
 	}
 
+	if(command == "CLEAR"){
+		this->myLibrary.clear_search();
+		this->start_program();
+	}
+
 	else if (command == "LOAD"){
 
 		string original_filename = this->myLibrary.get_db_filename();
@@ -41,6 +46,7 @@ void MainController::start_program(){
 
 			this->myLibrary.set_db_filename(original_filename);
 			this->myLibrary.load_media();
+
 			// this line must be a method of the interface class.
 			cerr << "Le fichier n'a pas pu être ouverte" << endl;
 
@@ -51,6 +57,7 @@ void MainController::start_program(){
 	else if (command == "SEARCH"){
 		if(this->myLibrary.search_by_string(user_input.at(1))){
 			//should list all the found media?
+			this->myInterface.list_media(this->myLibrary.get_medias());
 		}
 
 		else{

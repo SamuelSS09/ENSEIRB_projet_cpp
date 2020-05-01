@@ -18,7 +18,7 @@ Library::~Library(){
 
 vector<Media*> Library::get_medias(){ // 
 	//this->myMediaInterface.show_header();
-	if(this->search_indexes.size() == 0){ // if there was no previous search
+	if(this->search_indexes.empty()){ // if there was no previous search
 		return this->medias;
 	}
 
@@ -55,21 +55,67 @@ void Library::search_by_id(){
 }
 bool Library::search_by_string(string character_sequence){
 
-	bool isFound = false; // check if the search was sucessfull;
-	for(int i = 0; i < this->medias.size(); i++){ // iterate the media vector
-	
-		string mediaString = medias.at(i)->to_string();
 
-		if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
-    		
-    		if(mediaString.find(character_sequence) != std::string::npos){
-    			this->search_indexes.push_back(i);
-    			isFound = true; // the search found a match
-    		}
+	bool isFound = false; // check if the search was sucessfull;
+
+	//this function has a different behavioral in case the vector
+	//of searched indexes is not empty
+
+	if(this->search_indexes.empty()){ //CASE OF NO PREVIOUS SEARCH
+		for(int i = 0; i < this->medias.size(); i++){ // iterate through the media vector
+		
+			string mediaString = medias.at(i)->to_string();
+
+			if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
+	    		
+	    		if(mediaString.find(character_sequence) != std::string::npos){ // check if we have a substring
+	    			isFound = true; // the search found a match
+	    			this->search_indexes.push_back(i);
+	    			
+	    		}
+			}
 		}
+		
+		//makes sure the vector of indexes is ordered.
+		std::sort(this->search_indexes.begin(),this->search_indexes.end());
+		return isFound;		
 	}
-	return isFound;
+
+	else{ // CASE THERE WAS A PREVIOUS A SEARCH
+
+		vector<int> new_search_indexes; // temporary array to hold the results of the new search
+
+		for(int i = 0; i < this->search_indexes.size(); i++){ // iterate through indexes vector
+		
+			string mediaString = medias.at(search_indexes.at(i))->to_string(); 
+
+			if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
+	    		
+	    		if(mediaString.find(character_sequence) != std::string::npos){ // check if we have a substring
+	    			isFound = true; // the search found a match
+	    			new_search_indexes.push_back(i); // add to the temporary vector of indexes
+	    			
+	    		}
+			}
+		}
+		
+		//makes sure the vector of indexes is ordered.
+		std::sort(new_search_indexes.begin(),new_search_indexes.end());
+		this->search_indexes = new_search_indexes; // update the original search_indexes
+		return isFound;		
+	}
+
 }
+
+void Library::clear_search(){
+	this->search_indexes.clear();
+}
+
+void Library::add_media(Media* media){
+	// we have to check for duplicates
+
+} 
+
 
 Media* Library::media_from_string(string media_string){
 

@@ -43,12 +43,14 @@ public:
 	void set_medias(vector<Media*> medias){this->medias = medias;}
 	Media* media_from_string(string media_string);
 
-	//
-	void load_media();
-	void write_media();
-	void delete_by_id();
-	void search_by_id();
-	bool search_by_string(string character_sequence); // searches by a string
+	// other functions
+	void clear_search(); // this functions clears the vector search_indexes
+	void load_media(); // loads media from the file using the Database db
+	void write_media(); // writes media to file using Database db
+	void add_media(Media* media); // adds a media;
+	void delete_by_id(); // delete a Media* from medias by its id 
+	void search_by_id(); // searches a Media* by its id
+	bool search_by_string(string character_sequence); // searches by generic string
 };
 
 #endif

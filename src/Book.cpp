@@ -5,10 +5,7 @@
 const string class_index = "0";
 
 Book::Book():Media(){
-	summary = "";
-	publishingYear = 0;
-	numberOfPages = 0;
-	collection ="";
+	this->init(0,0,"","");
 }
 
 void Book:: init (int publishingYear, int numberOfPages, string summary,string collection){
@@ -19,7 +16,7 @@ void Book:: init (int publishingYear, int numberOfPages, string summary,string c
 }
 
 Book::Book(unsigned id,string title,string author, int publishingYear, int numberOfPages, string summary,string collection)
-: Media(id,title,author) {
+: Media(title,author) {
 	this->init(publishingYear, numberOfPages , summary , collection);
 }
 

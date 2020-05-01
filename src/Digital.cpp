@@ -10,13 +10,11 @@ void Digital::init(int size, string extension,string path){
 
 
 Digital::Digital():Media(){
-	extension = "";
-	path = "";
-	size = 0;
+	this->init(0, "", "");
 }
 
 Digital::Digital(unsigned id,string title,string author,int size, string extension,string path)
-: Media(id,title,author) {
+: Media(title,author) {
 	this->init(size,extension,path);
 }
 

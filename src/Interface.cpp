@@ -31,6 +31,7 @@ string Interface::get_user_input(){
 
 Interface::Interface(){
 	this->add_possible_options("BYE,0");
+	this->add_possible_options("CLEAR,0");
 	this->add_possible_options("LIST,0");
 	this->add_possible_options("ADD,1");
 	this->add_possible_options("LOAD,1");
@@ -45,7 +46,11 @@ vector<string> Interface::get_user_command(){
 	cout << "Veuillez utiliser une des options suivants: " << endl;
 	cout << "- LOAD filename : charger la médiathèque avec le fichier nomé filename" << endl;
 	cout << "- SEARCH chaine : chercher la médiathèque avec la chaine fournue" << endl;
-	
+	cout << "- LIST : afficher des la médiathèque. Garde les résultats d'une recherche précedente" << endl;
+	cout << "- BYE : sors du programme" << endl;
+	cout << "- CLEAR : jetter les résultats des recherches accumulées" << endl;
+
+
 	vector<string> optionSplit = helper::split_string(this->get_user_input(),' ');	
 
 	

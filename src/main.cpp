@@ -5,6 +5,30 @@
 using namespace std;
 
 
+void test_multi_id(){
+	Media* a = new Book();
+	Media* b = new Review();
+	Media* c = new Digital();
+
+	cout << "id" << a->get_id() << endl;
+	cout << "id" << b->get_id() << endl;
+	cout << "id" << c->get_id() << endl;
+	delete c;
+
+	Media* d = new Digital();
+	cout << "id" << d->get_id() << endl;
+
+	Library l("database/media_database.txt");
+	try{
+		l.load_media();
+	}catch(...){
+
+	}
+	Media *f = new Cd()	;
+	cout << "id: " << f->get_id() << endl;
+
+}
+
 void test_search_by_string(){
 	Library l("database/media_database.txt");
 	l.load_media();
@@ -61,6 +85,7 @@ void test_vector_string_constructor(){
 }
 
 int main(){
+	//test_multi_id();
 	//test_exception();
 	test_main_controller();
 	//test_interface();
