@@ -10,8 +10,8 @@ void Review::init(string editor, std::vector<string> articles){
 	this-> set_articles(articles);
 }
 
-Review::Review(unsigned id, string title,string author, int publishingYear, int numberOfPages, string summary,string collection,string editor, vector<string>articles)
-: 	Book(id,title,author,publishingYear,numberOfPages,summary,collection) {
+Review::Review(string title,string author, int publishingYear, int numberOfPages, string summary,string collection,string editor, vector<string>articles)
+: 	Book(title,author,publishingYear,numberOfPages,summary,collection) {
 	this->init(editor,articles);
 }
 

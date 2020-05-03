@@ -19,7 +19,7 @@ private:
 public:
 	//Constructors
 	Digital();
-	Digital(unsigned id,string title,string author,int size, string extension,string path);	
+	Digital(string title,string author,int size, string extension,string path);	
 	Digital(std::vector<string> attributs); 
 	// Destructors
 	// Class does not have pointers, so no memory leak

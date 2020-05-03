@@ -15,7 +15,7 @@ void Book:: init (int publishingYear, int numberOfPages, string summary,string c
 	this->set_collection(collection);
 }
 
-Book::Book(unsigned id,string title,string author, int publishingYear, int numberOfPages, string summary,string collection)
+Book::Book(string title,string author, int publishingYear, int numberOfPages, string summary,string collection)
 : Media(title,author) {
 	this->init(publishingYear, numberOfPages , summary , collection);
 }

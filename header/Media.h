@@ -21,8 +21,6 @@ using namespace std;
 // This is an ABSTRACT CLASS, and as such cannot be instantiated
 // This is seem from the pure virtual function to_string
 
-//
-
 // -------------------------------------------------------------------------
 
 

@@ -12,5 +12,7 @@
 	
 	- retirer les elements dupliqués sur le vecteur après le SEARCH :https://www.techiedelight.com/remove-duplicates-vector-cpp/
 
+	-- changer les stoi par <boost/lexical_cast.hpp>https://www.techiedelight.com/convert-string-to-int-cpp/ , puisque celle si ne convert pas des string du type 10dsasa . par example: stoi("10sxc") = 10, ce qui n'est pas bon
+
 	
 	

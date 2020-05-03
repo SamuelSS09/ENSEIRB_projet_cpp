@@ -16,7 +16,7 @@ private:
 public:
 	//Constructors
 	Cd();
-	Cd(unsigned id,string title,string author,int length,string producer,int tracksNumber);
+	Cd(string title,string author,int length,string producer,int tracksNumber);
 	Cd(std::vector<string> attributs);
 	// Destructors
 	// Class does not have pointers, so no memory leak

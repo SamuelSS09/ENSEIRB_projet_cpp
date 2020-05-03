@@ -16,8 +16,9 @@ private:
 	void load_my_database(string filename);
 public:
 	//Constructor
-	MainController();
+	//MainController();
 	MainController(string filename);
+
 	//other functions
 	void start_program();
 

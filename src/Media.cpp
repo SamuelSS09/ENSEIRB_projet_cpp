@@ -10,7 +10,7 @@ void Media::init(unsigned id, string title, string author){
 }
 
 Media::~Media(){ 
-	this->nextID = nextID -1;
+	//this->nextID = nextID -1;
 }
 
 Media::Media(){
@@ -19,7 +19,7 @@ Media::Media(){
 }
 
 Media::Media(string title,string author){
-	this->init(id,title,author);
+	this->init(this->nextID,title,author);
 	this->nextID++;
 }
 
@@ -45,6 +45,3 @@ string Media::to_string(){
 // Method 1: 
 //Media::Media(vector<string> attributs)
 // : Media(stoi(attributs.at(0)), attributs.at(1), attributs.at(2),attributs.at(3)){}
-
-
-

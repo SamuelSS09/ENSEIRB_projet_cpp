@@ -10,10 +10,43 @@ Library::Library(string filename){
 
 Library::~Library(){
 
+	// try to write media vector to a file
+	vector<string> medias_string;
+
 	for (int i=0;i<this->medias.size();i++){
+
+		//populate a vector of strings, each entry with a media in
+		// in string format
+		medias_string.push_back(this->medias.at(i)->to_string());
+
+		//free memory
  		delete this->medias.at(i);
- 	} 
+ 	}
 	this->medias.clear();
+
+
+	//try to write the media vector to a file
+
+	try{
+		this->db.write_database(medias_string);
+		// cout << "Library: j'appelle mon destructeur, tout va bien!" << endl;
+	}catch(...){
+		//
+	}
+
+}
+
+void Library::clear_medias(){
+
+	// clear memory allocation
+	for(int i=0 ; i < this->medias.size() ; i++){
+		delete this->medias.at(i);
+	}
+
+	this->medias.clear();
+
+	this->search_indexes.clear();
+
 }
 
 vector<Media*> Library::get_medias(){ // 
@@ -112,9 +145,11 @@ void Library::clear_search(){
 }
 
 void Library::add_media(Media* media){
-	// we have to check for duplicates
-
-} 
+	// we could check for duplicates
+	if (media) { //check if media is not a NULL pointer
+		this->medias.push_back(media);
+	}
+}
 
 
 Media* Library::media_from_string(string media_string){

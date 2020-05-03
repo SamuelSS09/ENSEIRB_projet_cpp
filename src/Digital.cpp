@@ -13,7 +13,7 @@ Digital::Digital():Media(){
 	this->init(0, "", "");
 }
 
-Digital::Digital(unsigned id,string title,string author,int size, string extension,string path)
+Digital::Digital(string title,string author,int size, string extension,string path)
 : Media(title,author) {
 	this->init(size,extension,path);
 }

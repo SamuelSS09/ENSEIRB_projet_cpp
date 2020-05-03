@@ -7,7 +7,7 @@ Vhs::Vhs():Media(){
 	producer = "";
 }
 
-Vhs::Vhs(unsigned id, string title,string author,int length,string producer)
+Vhs::Vhs(string title,string author,int length,string producer)
 : Media(title,author) {
 	this->set_length(length);
 	this->set_producer(producer);

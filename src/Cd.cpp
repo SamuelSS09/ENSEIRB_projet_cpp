@@ -6,8 +6,8 @@ Cd::Cd():Vhs(){
 	tracksNumber = 0;
 }
 
-Cd::Cd(unsigned id,string title,string author,int length,string producer,int tracksNumber)
-: Vhs(id,title,author,length,producer) {
+Cd::Cd(string title,string author,int length,string producer,int tracksNumber)
+: Vhs(title,author,length,producer) {
 	this->set_tracks_number(tracksNumber);
 }
 

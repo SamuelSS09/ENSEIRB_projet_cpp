@@ -18,7 +18,7 @@ private:
 public:
 	//Constructors
 	Book();
-	Book(unsigned id,string title,string author, int publishingYear, int numberOfPages, string summary,string collection);
+	Book(string title,string author, int publishingYear, int numberOfPages, string summary,string collection);
 	Book(vector<string> attributs);
 	// Destructors
 	// Class does not have pointers, so no memory leak
