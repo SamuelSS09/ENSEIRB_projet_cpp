@@ -52,7 +52,7 @@ Interface::Interface(){
 	this->add_possible_options("RESET,0");
 	this->add_possible_options("SEARCH,1");
 	this->add_possible_options("DELETE,1");
-
+	this->add_possible_options("SHOW,1");
 }
 
 vector<string> Interface::get_user_command(){
@@ -65,6 +65,7 @@ vector<string> Interface::get_user_command(){
 	cout << "- CLEAR         : jetter les résultats des recherches accumulées" << endl;
 	cout << "- RESET         : vider la base médiathèque" << endl;
 	cout << "- ADD type      : ajouter une média du type fourni." << endl;
+	cout << "- SHOW id     : afficher la médiathèque de l'identifiant fourni" << endl;
 	cout << "- DELETE id     : supprimer la médiathèque de l'identifiant fourni." << endl;
 
 

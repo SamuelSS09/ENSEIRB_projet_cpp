@@ -51,7 +51,6 @@ void Library::clear_medias(){
 vector<Media*> Library::get_medias(){ //
 	//this->myMediaInterface.show_header();
 
-
 	if(!previousSearch){ // if there was no previous search
 		return this->medias;
 	}
@@ -60,7 +59,7 @@ vector<Media*> Library::get_medias(){ //
 		vector<Media*> medias_filtered;
 		for(int i = 0; i < medias.size() ; i++){
 			if(this->medias.at(i)->is_searched()){
-				//add only medias whose isSearch attribut is truw
+				//add only medias whose isSearch attribut is true
 				medias_filtered.push_back(this->medias.at(i));
 			}
 		}
@@ -87,14 +86,25 @@ void Library::write_media(){
 void Library::delete_by_id(int media_id){
 	for(int i=0; i < this->medias.size(); i++){
 		if (medias.at(i)->get_id() == media_id){
-			//delete this->medias.at(i);
 			this->medias.erase(medias.begin()+i);
 		}
 	}
 }
-void Library::search_by_id(){
 
+bool Library::search_by_id(int media_id){
+
+	bool isFound = false;
+
+	for(int i=0; i < this->medias.size(); i++){
+		if (medias.at(i)->get_id() == media_id){
+			this->medias.at(i)->set_searched(true);
+			isFound = true;
+			this->previousSearch=true;
+		}
+	}
+	return isFound;
 }
+
 bool Library::search_by_string(string character_sequence){
 
 
@@ -123,7 +133,7 @@ bool Library::search_by_string(string character_sequence){
 		for(int i = 0; i < this->medias.size(); i++){ // iterate through indexes vector
 
 			if(this->medias.at(i)->is_searched()){// we should only check the medias which have already been searched
-				
+
 				string mediaString = medias.at(i)->to_string();
 
 				if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
@@ -131,7 +141,7 @@ bool Library::search_by_string(string character_sequence){
 		    		if(mediaString.find(character_sequence) != std::string::npos){ // check if we have a substring
 		    			this->medias.at(i)->set_searched(true);
 		    			isFound = true; // the search found a match
-					}	
+					}
 	    		}
 			}
 		}

@@ -66,6 +66,12 @@ void MainController::start_program(){
 			this->myLibrary.delete_by_id(stoi(user_input.at(1)));
 		}
 
+		else if(command == "SHOW"){
+			if(this->myLibrary.search_by_id(stoi(user_input.at(1)))){
+				this->myInterface.list_media(this->myLibrary.get_medias());
+			}
+		}
+
 		else if (command == "SEARCH"){
 			if(this->myLibrary.search_by_string(user_input.at(1))){
 				this->myInterface.list_media(this->myLibrary.get_medias());
