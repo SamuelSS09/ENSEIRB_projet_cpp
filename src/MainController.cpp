@@ -4,7 +4,7 @@ MainController::MainController(string filename){
 	setlocale(LC_ALL, "french");
 	this->load_my_database(filename);
 	this->myInterface.hello();
-   
+
 }
 
 void MainController::load_my_database(string filename){
@@ -20,7 +20,7 @@ void MainController::load_my_database(string filename){
 }
 
 void MainController::start_program(){
-	
+
 	string command = "";
 	do{
 		vector<string> user_input = this->myInterface.get_user_command();
@@ -50,8 +50,7 @@ void MainController::start_program(){
 			this->myLibrary.set_db_filename(user_input.at(1));
 
 			try{
-
-				// this->myLibrary.load_media();
+				 this->myLibrary.load_media();
 				//AFICHER UNE MESSAGE
 
 			}catch(exception e){
@@ -63,11 +62,14 @@ void MainController::start_program(){
 			}
 		}
 
+		else if(command == "DELETE"){
+			this->myLibrary.delete_by_id(stoi(user_input.at(1)));
+		}
+
 		else if (command == "SEARCH"){
 			if(this->myLibrary.search_by_string(user_input.at(1))){
 				this->myInterface.list_media(this->myLibrary.get_medias());
 			}
-
 			else{
 
 			}
@@ -78,4 +80,3 @@ void MainController::start_program(){
 	//NT: when the program is closed, the destructor of myLibrary will be called.
 	//It will try to write all media into a file
 }
-

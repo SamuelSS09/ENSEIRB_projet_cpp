@@ -51,6 +51,7 @@ Interface::Interface(){
 	this->add_possible_options("LOAD,1");
 	this->add_possible_options("RESET,0");
 	this->add_possible_options("SEARCH,1");
+	this->add_possible_options("DELETE,1");
 
 }
 
@@ -58,23 +59,24 @@ vector<string> Interface::get_user_command(){
 
 	cout << "Veuillez utiliser une des options suivants: " << endl;
 	cout << "- LOAD filename : charger la médiathèque avec le fichier nomé filename" << endl;
-	cout << "- SEARCH chaine : chercher la médiathèque avec la chaine fournue" << endl;
+	cout << "- SEARCH chaine : chercher la médiathèque avec la chaine fournie" << endl;
 	cout << "- LIST          : afficher des la médiathèque. Garde les résultats d'une recherche précedente" << endl;
 	cout << "- BYE           : sors du programme" << endl;
 	cout << "- CLEAR         : jetter les résultats des recherches accumulées" << endl;
 	cout << "- RESET         : vider la base médiathèque" << endl;
-	cout << "- ADD type      : ajouter une média du type fournu." << endl;
+	cout << "- ADD type      : ajouter une média du type fourni." << endl;
+	cout << "- DELETE id     : supprimer la médiathèque de l'identifiant fourni." << endl;
 
 
-	vector<string> optionSplit = helper::split_string(this->get_string_from_user(),' ');	
+	vector<string> optionSplit = helper::split_string(this->get_string_from_user(),' ');
 
-	
+
 	while(cin.bad() || !(this->validate_option(optionSplit)) ){
 
 		cout << "Veuillez inserer une option valide " << endl;
 
 		optionSplit = helper::split_string(this->get_string_from_user(),' ');
-		
+
 	}
 	cin.clear();
 	return optionSplit;
@@ -125,7 +127,7 @@ Media* Interface::media_from_input(string media_type){
 
 		// it is already created with a single unique id. logic explained in the
 		// READ_ME of Media.h
-		Media * m = new Book(title, author, publishingYear, numberOfPages, summary,collection);		
+		Media * m = new Book(title, author, publishingYear, numberOfPages, summary,collection);
 		return m;
 	}
 
@@ -139,7 +141,7 @@ Media* Interface::media_from_input(string media_type){
 
 
 bool Interface::validate_option(vector<string> optionSplit){//validate every possible option
-	// 1 - Nothing was inserted: 
+	// 1 - Nothing was inserted:
 	if(optionSplit.size() == 0){return false;}
 
 	else{
@@ -151,18 +153,18 @@ bool Interface::validate_option(vector<string> optionSplit){//validate every pos
 			// the following vector has OPTION at first position (at 0)
 			// and NUMBER OF NECESSARY ARGUMENTS at second position (at 1)
 			vector<string> current_option = helper::split_string(this->possible_options.at(i),',');
-			
-			// 2 - test if text matches any avaliable option 
-			if(userOption == current_option.at(0)){ 
+
+			// 2 - test if text matches any avaliable option
+			if(userOption == current_option.at(0)){
 
 				// test if correct number of arguments was provided
 				if(optionSplit.size() == stoi(current_option.at(1)) + 1){
 					// cout << "DEU BOM" << endl;
 					return true;
 				}
-				
+
 				else{
-					cout << "Veuillez inserer le bon nombre d'arguments" << endl; 
+					cout << "Veuillez inserer le bon nombre d'arguments" << endl;
 					return false;
 				}
 			}
