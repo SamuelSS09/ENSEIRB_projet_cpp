@@ -25,10 +25,11 @@ class Library {
 private:
 	vector<Media*> medias;		// holds the media
 
-	vector<int> search_indexes; // in case of a SEARCH, this vector contains
-								// which are the indexes of the elements in the
-								// first vector that satisfies the criteria of the
-								// search
+	bool previousSearch;		// holds if there was a previous search
+	// vector<int> search_indexes; // in case of a SEARCH, this vector contains
+	// 							// which are the indexes of the elements in the
+	// 							// first vector that satisfies the criteria of the
+	// 							// search
 
 	Database db;
 public:

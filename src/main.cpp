@@ -26,7 +26,8 @@ void test_multi_id(){
 	}catch(...){
 
 	}
-	Media *f = new Cd()	;
+	Media *f = new Book("", "",0,0, "","");
+
 	cout << "id: " << f->get_id() << endl;
 
 }

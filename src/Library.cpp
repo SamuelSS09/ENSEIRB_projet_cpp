@@ -6,6 +6,7 @@ char char_delimiter = ',';
 
 Library::Library(string filename){
 	this->db.set_filename(filename);
+	this->previousSearch=false;
 }
 
 Library::~Library(){
@@ -45,20 +46,23 @@ void Library::clear_medias(){
 
 	this->medias.clear();
 
-	this->search_indexes.clear();
-
 }
 
 vector<Media*> Library::get_medias(){ //
 	//this->myMediaInterface.show_header();
-	if(this->search_indexes.empty()){ // if there was no previous search
+
+
+	if(!previousSearch){ // if there was no previous search
 		return this->medias;
 	}
 
 	else{ // if there was a previous search
 		vector<Media*> medias_filtered;
-		for(int i : this->search_indexes){
-			medias_filtered.push_back(this->medias.at(i));
+		for(int i = 0; i < medias.size() ; i++){
+			if(this->medias.at(i)->is_searched()){
+				//add only medias whose isSearch attribut is truw
+				medias_filtered.push_back(this->medias.at(i));
+			}
 		}
 		return medias_filtered;
 	}
@@ -86,7 +90,6 @@ void Library::delete_by_id(int media_id){
 			//delete this->medias.at(i);
 			this->medias.erase(medias.begin()+i);
 		}
-		this->search_indexes.clear();
 	}
 }
 void Library::search_by_id(){
@@ -97,10 +100,9 @@ bool Library::search_by_string(string character_sequence){
 
 	bool isFound = false; // check if the search was sucessfull;
 
-	//this function has a different behavioral in case the vector
-	//of searched indexes is not empty
+	//this function has a different behavioral for each state of this->previosSearch
 
-	if(this->search_indexes.empty()){ //CASE OF NO PREVIOUS SEARCH
+	if(!this->previousSearch){ //CASE OF NO PREVIOUS SEARCH
 		for(int i = 0; i < this->medias.size(); i++){ // iterate through the media vector
 
 			string mediaString = medias.at(i)->to_string();
@@ -108,46 +110,39 @@ bool Library::search_by_string(string character_sequence){
 			if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
 
 	    		if(mediaString.find(character_sequence) != std::string::npos){ // check if we have a substring
-	    			isFound = true; // the search found a match
-	    			this->search_indexes.push_back(i);
-
+	    			this->medias.at(i)->set_searched(true);
+	    			isFound = true; // the search found a matchr
+	    			this->previousSearch=true; // we now have made a search
 	    		}
 			}
 		}
-
-		//makes sure the vector of indexes is ordered.
-		std::sort(this->search_indexes.begin(),this->search_indexes.end());
-		return isFound;
 	}
 
 	else{ // CASE THERE WAS A PREVIOUS A SEARCH
 
-		vector<int> new_search_indexes; // temporary array to hold the results of the new search
+		for(int i = 0; i < this->medias.size(); i++){ // iterate through indexes vector
 
-		for(int i = 0; i < this->search_indexes.size(); i++){ // iterate through indexes vector
+			if(this->medias.at(i)->is_searched()){// we should only check the medias which have already been searched
+				
+				string mediaString = medias.at(i)->to_string();
 
-			string mediaString = medias.at(search_indexes.at(i))->to_string();
+				if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
 
-			if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
-
-	    		if(mediaString.find(character_sequence) != std::string::npos){ // check if we have a substring
-	    			isFound = true; // the search found a match
-	    			new_search_indexes.push_back(i); // add to the temporary vector of indexes
-
+		    		if(mediaString.find(character_sequence) != std::string::npos){ // check if we have a substring
+		    			this->medias.at(i)->set_searched(true);
+		    			isFound = true; // the search found a match
+					}	
 	    		}
 			}
 		}
-
-		//makes sure the vector of indexes is ordered.
-		std::sort(new_search_indexes.begin(),new_search_indexes.end());
-		this->search_indexes = new_search_indexes; // update the original search_indexes
-		return isFound;
 	}
+
+	return isFound;
 
 }
 
 void Library::clear_search(){
-	this->search_indexes.clear();
+	this->previousSearch = false;
 }
 
 void Library::add_media(Media* media){

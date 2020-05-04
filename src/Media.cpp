@@ -1,5 +1,6 @@
 #include "Media.h"
 
+
 const string class_index = "X"; //not supposed to be instantiated
 unsigned Media::nextID = 0;
 
@@ -7,6 +8,7 @@ void Media::init(unsigned id, string title, string author){
 	this->set_id(id);
 	this->set_author(author);
 	this->set_title(title);
+	this->isSearched = false;
 }
 
 Media::~Media(){ 

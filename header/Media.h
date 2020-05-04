@@ -25,7 +25,6 @@ using namespace std;
 
 
 class Media{
-protected: // can be accesed by the child classes
 
 private:
 	static unsigned nextID;// counter for the unique id
@@ -33,11 +32,14 @@ private:
 	string title;
 	string author;
 
+	bool isSearched; //this bollean tells if this media belongs to the current
+					 // list of searched elements
+
 	void set_id(unsigned id){this->id=id;}
 
 
 
-public:
+public: // can be accesed by the child classes
 	//Constructors
 	Media();
 	Media(string title,string author);
@@ -54,10 +56,12 @@ public:
 	unsigned get_id(){return this->id;}
 	string get_title(){return this->title;}
 	string get_author(){return this->author;}
+	bool is_searched(){return this->isSearched;}
 
 	//Setters
 	void set_author(string author){this->author=author;}
 	void set_title(string title){this->title=title;}
+	void set_searched(bool isSearched){this->isSearched=isSearched;}
 
 	//Other functions
 	virtual string to_string() = 0; //pure virtual function => Abstract Class
