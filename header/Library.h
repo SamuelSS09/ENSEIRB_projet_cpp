@@ -64,7 +64,7 @@ public:
 	void load_media();  // loads media from the file using the Database db
 	void write_media(); // writes media to file using Database db
 	void add_media(Media* media); // adds a media;
-	void delete_by_id(int media_id); // delete a Media* from medias by its id
+	bool delete_by_id(int media_id); // delete a Media* from medias by its id
 	bool show_media_by_id(int media_id); // searches a Media* by its id
 	bool search_by_string(string character_sequence); // searches by generic string
 

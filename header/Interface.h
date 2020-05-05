@@ -39,8 +39,8 @@ public:
 
 	//other functions
 	vector<string> get_user_command();
-	void list_media(std::vector<Media*> medias);
-	Media* media_from_input(string media_type); // launches option to add info about 
+	//void list_media(std::vector<Media*> medias);
+	//Media* media_from_input(string media_type); // launches option to add info about 
 										        // new media to be added
 
 
@@ -49,13 +49,14 @@ public:
 	void print_error_db(); // prints error message while opening db
 	void print_reset(); // prints message after RESET is called
 
+	void print(string txt);
+	void error(string error);
 	//Destructor
 
 	//getters
 
 	//setters
 
-	void add_possible_options(string option);
 
 };
 

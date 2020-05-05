@@ -85,7 +85,7 @@ void Library::write_media(){
 	}
 	this->db.write_database(lines);
 }
-void Library::delete_by_id(int media_id){
+bool Library::delete_by_id(int media_id){
 	for(int i=0; i < this->medias.size(); i++){
 		if (medias.at(i)->get_id() == media_id){
 			this->medias.erase(medias.begin()+i);
@@ -99,7 +99,7 @@ bool Library::show_media_by_id(int media_id){
 
 	for(int i=0; i < this->medias.size(); i++){
 		if (medias.at(i)->get_id() == media_id){
-			this->medias.at(i)->set_searched(true);
+			// this->medias.at(i)->set_searched(true);
 			isFound = true;
 			this->medias.at(i)->show_info(true); // show detailed info
 		}
@@ -125,7 +125,6 @@ bool Library::search_by_string(string character_sequence){
 	    			this->medias.at(i)->set_searched(true);
 	    			isFound = true; // the search found a matchr
 	    			this->previousSearch=true; // we now have made a search
-	    			cout << "LIBRARY: MATCH" <<endl;
 	    		}
 			}
 		}
@@ -145,9 +144,16 @@ bool Library::search_by_string(string character_sequence){
 		    			this->medias.at(i)->set_searched(true);
 		    			isFound = true; // the search found a match
 					}
+
+					else{ //make the search even more selective
+						this->medias.at(i)->set_searched(false);
+					}
 	    		}
 			}
 		}
+
+		// in case no media was found in a sucessive search, we reset the search parameters
+		if(!isFound){this->clear_search();}
 	}
 
 	return isFound;

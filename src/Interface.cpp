@@ -1,8 +1,16 @@
 #include "Interface.h"
 
 
-void Interface::add_possible_options(string option){
-	this->possible_options.push_back(option);
+Interface::Interface(){
+	this->possible_options.push_back("BYE,0");
+	this->possible_options.push_back("CLEAR,0");
+	this->possible_options.push_back("LIST,0");
+	this->possible_options.push_back("ADD,1");
+	this->possible_options.push_back("LOAD,1");
+	this->possible_options.push_back("RESET,0");
+	this->possible_options.push_back("SEARCH,1");
+	this->possible_options.push_back("DELETE,1");
+	this->possible_options.push_back("SHOW,1");
 }
 
 string Interface::get_string_from_user(){
@@ -29,19 +37,6 @@ int Interface::get_int_from_user(){
     }
 
     return user_int;
-}
-
-
-Interface::Interface(){
-	this->add_possible_options("BYE,0");
-	this->add_possible_options("CLEAR,0");
-	this->add_possible_options("LIST,0");
-	this->add_possible_options("ADD,1");
-	this->add_possible_options("LOAD,1");
-	this->add_possible_options("RESET,0");
-	this->add_possible_options("SEARCH,1");
-	this->add_possible_options("DELETE,1");
-	this->add_possible_options("SHOW,1");
 }
 
 vector<string> Interface::get_user_command(){
@@ -90,7 +85,7 @@ void Interface::goodbye(){
 }
 
 void Interface::print_reset(){
-	cout << "La base des données a été vidée." << endl;
+	cout << "La base des données a été efacée." << endl;
 }
 
 bool Interface::validate_option(vector<string> optionSplit){//validate every possible option
@@ -129,6 +124,9 @@ bool Interface::validate_option(vector<string> optionSplit){//validate every pos
 	}
 
 }
+
+void Interface::print(string txt){ cout << txt << endl;}
+void Interface::error(string error){cerr << error << endl;}
 
 
 // void Interface::list_media(std::vector<Media*> medias){
