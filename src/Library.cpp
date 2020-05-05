@@ -93,7 +93,7 @@ void Library::delete_by_id(int media_id){
 	}
 }
 
-bool Library::search_by_id(int media_id){
+bool Library::show_media_by_id(int media_id){
 
 	bool isFound = false;
 
@@ -101,7 +101,7 @@ bool Library::search_by_id(int media_id){
 		if (medias.at(i)->get_id() == media_id){
 			this->medias.at(i)->set_searched(true);
 			isFound = true;
-			this->previousSearch=true;
+			this->medias.at(i)->show_info(true); // show detailed info
 		}
 	}
 	return isFound;
@@ -125,6 +125,7 @@ bool Library::search_by_string(string character_sequence){
 	    			this->medias.at(i)->set_searched(true);
 	    			isFound = true; // the search found a matchr
 	    			this->previousSearch=true; // we now have made a search
+	    			cout << "LIBRARY: MATCH" <<endl;
 	    		}
 			}
 		}
@@ -154,9 +155,20 @@ bool Library::search_by_string(string character_sequence){
 }
 
 void Library::list_media(){
-	for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
-		(*it)->show_info(false); //not detailed information
+
+	if(previousSearch){ // show only media which was prevoisly searched
+		for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
+			if((*it)->is_searched()){
+				(*it)->show_info(false); //not detailed information
+			}	
+		}
 	}
+	else{
+		for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
+			(*it)->show_info(false); //not detailed information	
+		}
+	}
+	
 }
 
 void Library::clear_search(){

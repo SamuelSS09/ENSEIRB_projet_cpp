@@ -5,17 +5,6 @@ void Interface::add_possible_options(string option){
 	this->possible_options.push_back(option);
 }
 
-void Interface::list_media(std::vector<Media*> medias){
-	cout << "ID              " << "TITRE            " <<"AUTEUR            " << endl;
-	for(int i = 0; i < medias.size() ; i++){
-		cout << medias.at(i)->get_id() << "            ";
-		cout << medias.at(i)->get_title() << "            ";
-		cout << medias.at(i)->get_author() << "            ";
-		cout << endl;
-	}
-
-}
-
 string Interface::get_string_from_user(){
 	cin.clear();
 	string option;
@@ -65,7 +54,7 @@ vector<string> Interface::get_user_command(){
 	cout << "- CLEAR         : jetter les résultats des recherches accumulées" << endl;
 	cout << "- RESET         : vider la base médiathèque" << endl;
 	cout << "- ADD type      : ajouter une média du type fourni." << endl;
-	cout << "- SHOW id     : afficher la médiathèque de l'identifiant fourni" << endl;
+	cout << "- SHOW id       : afficher la médiathèque de l'identifiant fourni" << endl;
 	cout << "- DELETE id     : supprimer la médiathèque de l'identifiant fourni." << endl;
 
 
@@ -104,43 +93,6 @@ void Interface::print_reset(){
 	cout << "La base des données a été vidée." << endl;
 }
 
-Media* Interface::media_from_input(string media_type){
-
-	if(media_type == "Book"){
-
-		cout << "Inserer le titre: ";
-		string title = this->get_string_from_user();
-
-		cout << "Inserer l'auteur: ";
-		string author = this->get_string_from_user();
-
-		cout << "Inserer l'année de publication: ";
-		int publishingYear = this->get_int_from_user();
-
-		cout << "Inserer le nombre de pages: ";
-		int numberOfPages = this->get_int_from_user();
-
-		cout << "Inserer le résumé du livre: ";
-		string summary = this->get_string_from_user();
-
-		cout << "Inserer la collection dont le livre appartient: ";
-		string collection = this->get_string_from_user();
-
-		// it is already created with a single unique id. logic explained in the
-		// READ_ME of Media.h
-		Media * m = new Book(title, author, publishingYear, numberOfPages, summary,collection);
-		return m;
-	}
-
-	else{
-		cout << "Veuillez inserer un type valable de media" << endl;
-		cout << "Ces sont: Book, Cd, Dvd, Digital, Review et Vhs" << endl;
-
-		return NULL;
-	}
-}
-
-
 bool Interface::validate_option(vector<string> optionSplit){//validate every possible option
 	// 1 - Nothing was inserted:
 	if(optionSplit.size() == 0){return false;}
@@ -177,3 +129,16 @@ bool Interface::validate_option(vector<string> optionSplit){//validate every pos
 	}
 
 }
+
+
+// void Interface::list_media(std::vector<Media*> medias){
+// 	cout << "ID              " << "TITRE            " <<"AUTEUR            " << endl;
+// 	for(int i = 0; i < medias.size() ; i++){
+// 		cout << medias.at(i)->get_id() << "            ";
+// 		cout << medias.at(i)->get_title() << "            ";
+// 		cout << medias.at(i)->get_author() << "            ";
+// 		cout << endl;
+// 	}
+
+// }
+

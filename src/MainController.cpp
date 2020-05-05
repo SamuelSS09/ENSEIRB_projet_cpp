@@ -106,14 +106,14 @@ void MainController::start_program(){
 		}
 
 		else if(command == "SHOW"){
-			if(this->myLibrary.search_by_id(stoi(user_input.at(1)))){
-				this->myInterface.list_media(this->myLibrary.get_medias());
+			if(this->myLibrary.show_media_by_id(stoi(user_input.at(1)))){
+				//this->myInterface.list_media(this->myLibrary.get_medias());
 			}
 		}
 
 		else if (command == "SEARCH"){
 			if(this->myLibrary.search_by_string(user_input.at(1))){
-				this->myInterface.list_media(this->myLibrary.get_medias());
+				//this->myInterface.list_media(this->myLibrary.get_medias());
 			}
 			else{
 				//this->myLibrary.print_no_result_search();

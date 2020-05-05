@@ -48,10 +48,10 @@ string Book::to_string(){
 void Book::show_info(bool detailed){
 	Media::show_info(detailed);
 	if(detailed){
-		cout << "Année de publication: " << this->get_publishing_year() << "\t";
+		cout << "Année de publication: " << this->get_publishing_year() << endl;
 		cout << "Nombre de pages : " << this->get_number_of_pages() << endl;
 		cout << "Résumé: " << this->get_summary() << endl;
-		cout << "Collection: " << this->get_collection() << "\t";
+		cout << "Collection: " << this->get_collection() << endl;
 	}	
 }
 

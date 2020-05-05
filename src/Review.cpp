@@ -44,11 +44,10 @@ string Review::to_string(){
 void Review::show_info(bool detailed){
 	Book::show_info(detailed);
 	if(detailed){
-		cout << "Editeur: " << this->get_editor() << "\t";
+		cout << "Editeur: " << this->get_editor() << endl;
 		for(int i = 0 ; i < this->articles.size() ; i++){
-			cout << "Article " << i << ": " << articles.at(i) << "\t";
+			cout << "Article " << i + 1 << ": " << articles.at(i) << endl;
 		}
-		cout << endl;
 	}
 }
 
