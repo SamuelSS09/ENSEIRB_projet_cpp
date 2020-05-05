@@ -2,7 +2,6 @@
 // #include "helper.h"
 
 
-const string class_index = "0";
 
 Book::Book():Media(){
 	this->init(0,0,"","");
@@ -13,6 +12,7 @@ void Book:: init (int publishingYear, int numberOfPages, string summary,string c
 	this->set_number_of_pages(numberOfPages);
 	this->set_summary(summary);
 	this->set_collection(collection);
+	this->class_index = 1;
 }
 
 Book::Book(string title,string author, int publishingYear, int numberOfPages, string summary,string collection)
@@ -34,13 +34,41 @@ Book::Book(vector<string> attributs)
 string Book::to_string(){
 	string s = Media::to_string();
 
-	//replace class index
-	int position_at_str = 0;
-	int length_of_char = 1;
-	s.replace(position_at_str,length_of_char,class_index);
+	// //replace class index
+	// int position_at_str = 0;
+	// int length_of_char = 1;
+	// s.replace(position_at_str,length_of_char,std::to_string(class_index));
 
-	//continue to build string
+	// //continue to build string
 	s 	     = s + std::to_string(get_publishing_year()) + "," + std::to_string(get_number_of_pages()) + ",";
 	s   	 = s + get_summary() + "," + get_collection();
 	return s;
+}
+
+void Book::show_info(bool detailed){
+	Media::show_info(detailed);
+	if(detailed){
+		cout << "Année de publication: " << this->get_publishing_year() << "\t";
+		cout << "Nombre de pages : " << this->get_number_of_pages() << endl;
+		cout << "Résumé: " << this->get_summary() << endl;
+		cout << "Collection: " << this->get_collection() << "\t";
+	}	
+}
+
+void Book::set_info(){	
+
+	Media::set_info();
+
+	cout << "Inserer l'année de publication: ";
+	this->set_publishing_year(this->get_int_from_user());
+
+	cout << "Inserer le nombre de pages: ";
+	this->set_number_of_pages(this->get_int_from_user());
+
+	cout << "Inserer le résumé du livre: ";
+	this->set_summary(this->get_string_from_user());
+
+	cout << "Inserer la collection dont le livre appartient: ";
+	this->set_collection(this->get_string_from_user());
+
 }

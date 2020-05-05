@@ -30,7 +30,8 @@ void MainController::start_program(){
 		}
 
 		else if(command == "LIST"){
-			this->myInterface.list_media(this->myLibrary.get_medias());
+			// this->myInterface.list_media(this->myLibrary.get_medias());
+			this->myLibrary.list_media();
 		}
 
 		else if(command == "RESET"){
@@ -39,9 +40,47 @@ void MainController::start_program(){
 		}
 
 		else if(command == "ADD"){
+			string media_type = user_input.at(1);
+
+			if(media_type == "Book"){
+				Media* m = new Book();
+				m->set_info();
+				this->myLibrary.add_media(m);
+			}
+
+			else if(media_type == "Review"){
+				Media* m = new Review();
+				m->set_info();
+				this->myLibrary.add_media(m);
+			}
+
+			else if(media_type == "Digital"){
+				Media* m = new Digital();
+				m->set_info();
+				this->myLibrary.add_media(m);
+			}
+
+			else if(media_type == "Vhs"){
+				Media* m = new Vhs();
+				m->set_info();
+				this->myLibrary.add_media(m);
+			}
+
+			else if(media_type == "Cd"){
+				Media* m = new Cd();
+				m->set_info();
+				this->myLibrary.add_media(m);
+			}
+
+			else if(media_type == "Dvd"){
+				Media* m = new Dvd();
+				m->set_info();
+				this->myLibrary.add_media(m);
+			}
+
 			//this solutions is weird, because we feed a input that the interface got
 			// back to herself
-			this->myLibrary.add_media(this->myInterface.media_from_input(user_input.at(1)));
+			//this->myLibrary.add_media(this->myInterface.media_from_input(user_input.at(1)));
 		}
 
 		else if(command == "LOAD"){
@@ -77,7 +116,7 @@ void MainController::start_program(){
 				this->myInterface.list_media(this->myLibrary.get_medias());
 			}
 			else{
-
+				//this->myLibrary.print_no_result_search();
 			}
 		}
 	}while(command != "BYE");

@@ -28,6 +28,8 @@ public:
 	void set_tracks_number(int tracksNumber){this->tracksNumber=tracksNumber;}
 	//Other functions
 	string to_string();
+	void show_info(bool detailed);
+	void set_info();
 };
 
 #endif

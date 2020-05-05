@@ -1,49 +1,124 @@
 #include "Media.h"
+#include <typeinfo>       // operator typeid
 
-
-const string class_index = "X"; //not supposed to be instantiated
 unsigned Media::nextID = 0;
+// constant short class_index = 0;
+//PRIVATE FUNCTIONS
 
 void Media::init(unsigned id, string title, string author){
 	this->set_id(id);
 	this->set_author(author);
 	this->set_title(title);
 	this->isSearched = false;
+	this->class_index = 0;
 }
 
-Media::~Media(){ 
-	//this->nextID = nextID -1;
+string Media::get_string_from_user(){
+	cin.clear();
+	string option;
+
+	getline(cin,option);
+	while (option.length()==0 ){
+            getline(cin, option);
+    }
+
+    return option;
 }
 
-Media::Media(){
+int Media::get_int_from_user(){
+
+    int user_int = 0;
+
+    try{
+    	user_int = stoi(this->get_string_from_user());
+    }catch(...){
+    	cout << "Veuillez inserer une nombre valide" << endl;
+    	this->get_int_from_user(); // try again
+    }
+
+    return user_int;
+}
+
+//CONSTRUCTORS AND DESTRUCTOR
+
+Media::~Media(){}
+
+Media::Media() : class_index(0){
 	this->init(this->nextID,"", "");
 	this->nextID++; // increment the counter of IDs
 }
 
-Media::Media(string title,string author){
+Media::Media(string title,string author) : class_index (0){
 	this->init(this->nextID,title,author);
 	this->nextID++;
 }
 
-Media::Media(vector<string> attributs){
-
+Media::Media(vector<string> attributs) : class_index (0){
+	int id = 0;						
 	int readID = stoi(attributs.at(1));
-
-	// we check if the id received is greater than the number of classes
-	// already existent. In this case, we have to correct the couting of IDs
-
-	if(readID > this->nextID){ 
-		this->nextID = readID + 1;
+	
+	if(readID==-1){ // this id means that we should define it automatically
+		this->id = nextID;
+		nextID++;
 	}
 
-	this->init(readID,attributs.at(2),attributs.at(3));
+	else{ // we are reading from a file, and threfore we should take the read id
+
+		id = readID;
+
+		// we check if the id received is greater than the number of classes
+		// already existent. In this case, we have to correct the couting of IDs
+
+		if(readID > this->nextID){ 
+			this->nextID = readID + 1;
+		}
+	}
+	this->init(id,attributs.at(2),attributs.at(3));
 }
 
-string Media::to_string(){
-	return class_index + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
+//OTHER FUNCTIONS
+
+string Media::to_string(){ // formating to write on file.
+	return std::to_string(class_index) + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
+}
+
+void Media::show_info(bool detailed){ // NOT MVC
+
+	string s;
+
+	switch(this->class_index){
+		case 0: s = "Media";
+				break;
+		case 1: s = "Livre";
+				break;
+		case 2: s = "Article";
+				break;
+		case 3: s = "Numérique";
+				break;
+		case 4: s = "VHS";
+				break;
+		case 5: s = "CD";
+				break;
+		case 6: s = "DVD";
+				break;				
+
+	}
+
+	string space_char;
+
+	if(detailed){space_char = "\n";} else{space_char = "\t";}
+
+	cout << "ID: " << this->get_id() << space_char;
+	cout << "Type: " << s << space_char;
+	cout << "Titre: " << this->get_title() << space_char; 
+	cout << "Auteur: " << this->get_author() << endl;
+ }
+
+
+void Media::set_info(){ // NOT MVC
+	cout << "Inserer le titre: ";
+	this->set_title(this->get_string_from_user());
+
+	cout << "Inserer l'auteur: ";
+	this->set_author(this->get_string_from_user());
 } 
-
-
-// Method 1: 
-//Media::Media(vector<string> attributs)
-// : Media(stoi(attributs.at(0)), attributs.at(1), attributs.at(2),attributs.at(3)){}

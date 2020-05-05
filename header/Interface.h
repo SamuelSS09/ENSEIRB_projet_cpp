@@ -41,7 +41,7 @@ public:
 	vector<string> get_user_command();
 	void list_media(std::vector<Media*> medias);
 	Media* media_from_input(string media_type); // launches option to add info about 
-										  // new media to be added
+										        // new media to be added
 
 
 	void goodbye();// prints goodbye message

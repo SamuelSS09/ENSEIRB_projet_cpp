@@ -33,7 +33,10 @@ public:
 	void set_articles(vector<string> articles){this->articles=articles;}
 	void init(string editor, std::vector<string> articles);
 	//Other functions
+	
 	string to_string();
+	void show_info(bool detailed);
+	void set_info();
 
 };
 #endif

@@ -48,6 +48,7 @@ void Library::clear_medias(){
 
 }
 
+
 vector<Media*> Library::get_medias(){ //
 	//this->myMediaInterface.show_header();
 
@@ -61,6 +62,7 @@ vector<Media*> Library::get_medias(){ //
 			if(this->medias.at(i)->is_searched()){
 				//add only medias whose isSearch attribut is true
 				medias_filtered.push_back(this->medias.at(i));
+
 			}
 		}
 		return medias_filtered;
@@ -151,7 +153,16 @@ bool Library::search_by_string(string character_sequence){
 
 }
 
+void Library::list_media(){
+	for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
+		(*it)->show_info(false); //not detailed information
+	}
+}
+
 void Library::clear_search(){
+	for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
+		(*it)->set_searched(false); 
+	}
 	this->previousSearch = false;
 }
 
@@ -175,22 +186,22 @@ Media* Library::media_from_string(string media_string){
 
 	switch(media_index){
 
-		case 0 :	media = new Book(attributs);
+		case 1 :	media = new Book(attributs);
 					break;
 
-		case 1 :	media = new Review(attributs);
+		case 2 :	media = new Review(attributs);
 					break;
 
-		case 2 : 	media = new Digital(attributs);
+		case 3 : 	media = new Digital(attributs);
 		 			break;
 
-		case 3 : 	media = new Vhs(attributs);
+		case 4 : 	media = new Vhs(attributs);
 		 			break;
 
-		case 4 : 	media = new Cd(attributs);
+		case 5 : 	media = new Cd(attributs);
 		 			break;
 
-		case 5 : 	media = new Dvd(attributs);
+		case 6 : 	media = new Dvd(attributs);
 		 			break;
 
 		default: 	media = NULL; // pas de media a construire

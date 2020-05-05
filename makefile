@@ -19,6 +19,7 @@ main: $(obj)
 	$(CXX)  -o $@ $^
 
 exec: main
+	@clear
 	./main
 
 # overide of the compiler generated rules

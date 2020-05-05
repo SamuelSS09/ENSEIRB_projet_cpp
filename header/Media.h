@@ -5,6 +5,8 @@
 #include <vector>
 #include <sstream>
 
+#include <iostream> // violation of the MVC, only here for the sake of simplicity.
+
 using namespace std;
 
 
@@ -26,8 +28,12 @@ using namespace std;
 
 class Media{
 
-private:
+protected: // can be accesed by the child classes
 	static unsigned nextID;// counter for the unique id
+	short class_index;     // unique id for the class type.
+
+
+
 	unsigned id;
 	string title;
 	string author;
@@ -35,15 +41,23 @@ private:
 	bool isSearched; //this bollean tells if this media belongs to the current
 					 // list of searched elements
 
+
 	void set_id(unsigned id){this->id=id;}
+	void init(unsigned id, string title,string author);
+
+	//Violation of the MVC, only here for the sake of simplicity.
+	string get_string_from_user(); // function to obtain a single line inserted
+								   // by the user in string format
+
+	int get_int_from_user();	   // used to obtain a single line insertd by the user
+								   // in integer format.
 
 
-
-public: // can be accesed by the child classes
+public:
 	//Constructors
 	Media();
 	Media(string title,string author);
-	Media(vector<string> attributs); //used to construct from file
+	Media(vector<string> attributs); // used to construct from file or from interface.
 	
 	// Destructors
 	// This class is abstract, so we want to call the destructors of its childs.
@@ -63,10 +77,23 @@ public: // can be accesed by the child classes
 	void set_title(string title){this->title=title;}
 	void set_searched(bool isSearched){this->isSearched=isSearched;}
 
+	virtual void show_basic_info(){}
+
 	//Other functions
 	virtual string to_string() = 0; //pure virtual function => Abstract Class
-	void init(unsigned id, string title,string author);
 
+	//NT: showing and constructing functions. Idally this should be in a interface,
+	//but the code is simple enough to allow us to do it here
+
+	virtual void show_info(bool detailed); // shows info. if detailed=true, shows
+										   // all the info of the class
+
+	virtual void set_info();				// allows class to gather information
+											// from the user to construct itself.
+														
+	//NT2: A MVC solution: make a class Info which holds a map. This class would then update
+	// the map with the info it need to gather or show. The interface would then read this map
+	// and translate ir to the user. This would more flexible for changes in the interface.
 };
 
 #endif

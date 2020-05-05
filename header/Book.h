@@ -43,6 +43,7 @@ public:
 
 	//Other functions
 	string to_string();
-
+	void show_info(bool detailed);
+	void set_info();
 };
 #endif

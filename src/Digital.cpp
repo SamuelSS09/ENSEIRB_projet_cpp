@@ -1,11 +1,12 @@
 #include "Digital.h"
 
-const string class_index = "2";
+// const string class_index = "2";
 
 void Digital::init(int size, string extension,string path){
 	this->set_extension(extension);
 	this->set_path(path);
 	this->set_size(size);
+	this->class_index = 3;
 }
 
 
@@ -29,8 +30,29 @@ string Digital::to_string(){
 	//replace class index
 	int position_at_str = 0;
 	int length_of_char = 1;
-	s.replace(position_at_str,length_of_char,class_index);
+	s.replace(position_at_str,length_of_char,std::to_string(class_index));
 
 	return s + "," + std::to_string(this->get_size()) + "," + get_extension() + "," + get_path();
 }
 
+void Digital::show_info(bool detailed){
+	Media::show_info(detailed);
+	if(detailed){
+		cout << "Taille du fichier: " << this->get_size() << " kBs" << "\t";
+		cout << "Type du fichier: " << this->get_extension() << endl;
+		cout << "Chemin du fichier: " << this->get_path() << endl;
+	}
+}
+
+void Digital::set_info(){
+	Media::set_info();
+
+	cout << "Insérer la taille du fichier en kBs: ";
+	this->set_size(this->get_int_from_user());
+	
+	cout << "Insérer le type du fichier: ";
+	this->set_extension(this->get_string_from_user());
+
+	cout << "Insérer le chemin du fichier: ";
+	this->set_path(this->get_string_from_user());
+}

@@ -59,7 +59,7 @@ public:
 	void clear_medias(); // we must always clear the search vector
 											  // when setting a new media vector;
 
-
+	void list_media();
 	void clear_search(); // this functions clears the vector search_indexes
 	void load_media();  // loads media from the file using the Database db
 	void write_media(); // writes media to file using Database db

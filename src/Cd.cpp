@@ -1,9 +1,10 @@
 #include "Cd.h"
 
-const string class_index = "4";
+// const short class_index = 5;
 
 Cd::Cd():Vhs(){
 	tracksNumber = 0;
+	this->class_index = 5;
 }
 
 Cd::Cd(string title,string author,int length,string producer,int tracksNumber)
@@ -21,8 +22,22 @@ string Cd::to_string(){
     //replace class index
 	int position_at_str = 0;
 	int length_of_char = 1;
-	s.replace(position_at_str,length_of_char,class_index);
+	s.replace(position_at_str,length_of_char,std::to_string(class_index));
 
 	return s + "," + std::to_string(this->get_tracks_number());
 
+}
+
+void Cd::show_info(bool detailed){
+	Vhs::show_info(detailed);
+	if(detailed){
+		cout << "Número des pistes: " << this->get_tracks_number() << endl;
+	}
+}
+
+void Cd::set_info(){
+	Vhs::set_info();
+
+	cout << "Insérer le número des pistes: ";
+	this->set_tracks_number(this->get_int_from_user());
 }

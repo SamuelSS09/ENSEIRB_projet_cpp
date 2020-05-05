@@ -14,5 +14,7 @@
 
 	-- changer les stoi par <boost/lexical_cast.hpp>https://www.techiedelight.com/convert-string-to-int-cpp/ , puisque celle si ne convert pas des string du type 10dsasa . par example: stoi("10sxc") = 10, ce qui n'est pas bon
 
+	-- verifier si c'est un bonne idée de faire le class_index être un attribut des classes.
+
 	
 	
