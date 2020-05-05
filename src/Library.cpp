@@ -86,11 +86,14 @@ void Library::write_media(){
 	this->db.write_database(lines);
 }
 bool Library::delete_by_id(int media_id){
+	bool isFound = false;
 	for(int i=0; i < this->medias.size(); i++){
 		if (medias.at(i)->get_id() == media_id){
 			this->medias.erase(medias.begin()+i);
+			isFound=true;
 		}
 	}
+	return isFound;
 }
 
 bool Library::show_media_by_id(int media_id){
