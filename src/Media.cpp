@@ -43,17 +43,17 @@ int Media::get_int_from_user(){
 
 Media::~Media(){}
 
-Media::Media() : class_index(0){
+Media::Media(){
 	this->init(this->nextID,"", "");
 	this->nextID++; // increment the counter of IDs
 }
 
-Media::Media(string title,string author) : class_index (0){
+Media::Media(string title,string author){
 	this->init(this->nextID,title,author);
 	this->nextID++;
 }
 
-Media::Media(vector<string> attributs) : class_index (0){
+Media::Media(vector<string> attributs){
 	int id = 0;						
 	int readID = stoi(attributs.at(1));
 	
@@ -79,7 +79,7 @@ Media::Media(vector<string> attributs) : class_index (0){
 //OTHER FUNCTIONS
 
 string Media::to_string(){ // formating to write on file.
-	return std::to_string(class_index) + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author() + "," ;
+	return std::to_string(class_index) + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author();
 }
 
 void Media::show_info(bool detailed){ // NOT MVC

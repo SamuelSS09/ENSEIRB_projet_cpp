@@ -28,16 +28,13 @@ Review::Review(vector<string> attributs)
 string Review::to_string(){
 
 	string book = Book::to_string();
-	
-	// int position_at_str = 0;
-	// int length_of_char = 1;
-	// book.replace(position_at_str,length_of_char,std::to_string(class_index));
 
 	string s   = book + "," + this->get_editor();
 
 	for (int i = 0; i < this->articles.size();i++){
 		s = s + "," + articles.at(i);
 	}
+	
 	return s;
 }
 

@@ -23,13 +23,7 @@ Vhs::Vhs(vector<string> attributs) : Media(attributs) {
 
 string Vhs::to_string(){
 	string s = Media::to_string();
-
-	//replace class index
-	int position_at_str = 0;
-	int length_of_char = 1;
-	s.replace(position_at_str,length_of_char,std::to_string(class_index));
-
-	return s + "," + std::to_string(get_length()) + "," + get_producer();
+	return s + "," + std::to_string(get_length()) + "," + this->get_producer();
 
 }
 

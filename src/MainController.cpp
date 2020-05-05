@@ -95,6 +95,7 @@ void MainController::start_program(){
 			}catch(exception e){
 
 				this->myLibrary.set_db_filename(original_filename);
+				cout << "je suis ici" << endl;
 				this->myLibrary.load_media();
 				this->myInterface.print_error_db();
 
