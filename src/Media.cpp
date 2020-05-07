@@ -54,26 +54,14 @@ Media::Media(string title,string author){
 }
 
 Media::Media(vector<string> attributs){
-	int id = 0;						
 	int readID = stoi(attributs.at(1));
-	
-	if(readID==-1){ // this id means that we should define it automatically
-		this->id = nextID;
-		nextID++;
+
+	// we check if the id received is greater or equal  than the number of instances
+	// already existent. In this case, we have to correct the couting of IDs
+	if(readID >= this->nextID){ 
+		this->nextID = readID + 1;
 	}
-
-	else{ // we are reading from a file, and threfore we should take the read id
-
-		id = readID;
-
-		// we check if the id received is greater than the number of classes
-		// already existent. In this case, we have to correct the couting of IDs
-
-		if(readID > this->nextID){ 
-			this->nextID = readID + 1;
-		}
-	}
-	this->init(id,attributs.at(2),attributs.at(3));
+	this->init(readID,attributs.at(2),attributs.at(3));
 }
 
 //OTHER FUNCTIONS

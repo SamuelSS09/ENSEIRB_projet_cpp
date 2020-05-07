@@ -94,10 +94,17 @@ int main(){
 	// //test_multi_id();
 	// //test_exception();
 	test_main_controller();
+
 	// // Book b;
 	// // b.show_info();
 	// //test_interface();
 	// //test_search_by_string();
+
+
+	// Database d("database/media_database.txt");
+	// cout << d.check_file() << endl;
+
+	return 0;
 		
 
 	return 0;

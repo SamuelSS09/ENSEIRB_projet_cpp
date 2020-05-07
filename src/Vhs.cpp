@@ -30,8 +30,8 @@ string Vhs::to_string(){
 void Vhs::show_info(bool detailed){
 	Media::show_info(detailed);
 	if(detailed){
-		cout << "Duration: " << this->get_length() << " minutes" << "\t";
-		cout <<  "Producteur: " << this->get_producer() << "\t";
+		cout << "Duration: " << this->get_length() << " minutes" << endl;
+		cout <<  "Producteur: " << this->get_producer() << endl;
 	}
 }
 

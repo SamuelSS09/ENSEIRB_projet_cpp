@@ -40,47 +40,47 @@ void MainController::start_program(){
 		}
 
 		else if(command == "ADD"){
+
 			string media_type = user_input.at(1);
+			Media* m;
 
 			if(media_type == "Book"){
-				Media* m = new Book();
+				m = new Book();
 				m->set_info();
 				this->myLibrary.add_media(m);
 			}
 
 			else if(media_type == "Review"){
-				Media* m = new Review();
+				m = new Review();
 				m->set_info();
 				this->myLibrary.add_media(m);
 			}
 
 			else if(media_type == "Digital"){
-				Media* m = new Digital();
+				m = new Digital();
 				m->set_info();
 				this->myLibrary.add_media(m);
 			}
 
 			else if(media_type == "Vhs"){
-				Media* m = new Vhs();
+				m = new Vhs();
 				m->set_info();
 				this->myLibrary.add_media(m);
 			}
 
 			else if(media_type == "Cd"){
-				Media* m = new Cd();
+				m = new Cd();
 				m->set_info();
 				this->myLibrary.add_media(m);
 			}
 
 			else if(media_type == "Dvd"){
-				Media* m = new Dvd();
+				m = new Dvd();
 				m->set_info();
 				this->myLibrary.add_media(m);
 			}
 
-			//this solutions is weird, because we feed a input that the interface got
-			// back to herself
-			//this->myLibrary.add_media(this->myInterface.media_from_input(user_input.at(1)));
+			// delete m;
 		}
 
 		else if(command == "LOAD"){
@@ -90,30 +90,39 @@ void MainController::start_program(){
 
 			try{
 				 this->myLibrary.load_media();
-				//AFICHER UNE MESSAGE
+				 this->myInterface.print("Le fichier a été chargé.");
 
 			}catch(exception e){
-
-				this->myLibrary.set_db_filename(original_filename);
-				cout << "je suis ici" << endl;
-				this->myLibrary.load_media();
-				this->myInterface.print_error_db();
-
+				this->load_my_database(original_filename);
 			}
 		}
 
 		else if(command == "DELETE"){
-			if(this->myLibrary.delete_by_id(stoi(user_input.at(1)))){
-				this->myInterface.print("Le média a été éfacé.");
-			}
-			else{
-				this->myInterface.print("Le média n'a pas été rétrouvé.");
+
+			int id = 0;
+			try{
+				id = stoi(user_input.at(1));
+				if(this->myLibrary.delete_by_id(id)){
+					this->myInterface.print("Le média a été éfacé.");				
+				}
+				else{
+					this->myInterface.print("Aucune média trovué avec l'id fourni.");
+				}
+			}catch(...){
+				this->myInterface.error("L'identifiant fourni n'est pas valable");
 			}
 		}
 
 		else if(command == "SHOW"){
-			if(!this->myLibrary.show_media_by_id(stoi(user_input.at(1)))){
-				this->myInterface.print("Aucune média trovué avec l'id fourni.");
+			
+			int id = 0;
+			try{
+				id = stoi(user_input.at(1));
+				if(!this->myLibrary.show_media_by_id(id)){
+					this->myInterface.print("Aucune média trovué avec l'id fourni.");
+				}
+			}catch(...){
+				this->myInterface.error("L'identifiant fourni n'est pas valable");
 			}
 		}
 

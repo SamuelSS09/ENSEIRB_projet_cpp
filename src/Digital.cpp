@@ -32,7 +32,7 @@ string Digital::to_string(){
 void Digital::show_info(bool detailed){
 	Media::show_info(detailed);
 	if(detailed){
-		cout << "Taille du fichier: " << this->get_size() << " kBs" << "\t";
+		cout << "Taille du fichier: " << this->get_size() << " kBs" << endl;
 		cout << "Type du fichier: " << this->get_extension() << endl;
 		cout << "Chemin du fichier: " << this->get_path() << endl;
 	}

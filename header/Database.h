@@ -36,7 +36,6 @@ class Database {
 
 private: 
 	string filename;
-	fstream fileManager;
 
 public: 
 	//Constructors
@@ -54,7 +53,6 @@ public:
 
 	void write_database(vector<string> lines) throw (std::exception);
 
-	bool check_file(); // TRUE if file is open successfully. FALSE otherwise
 
 };
 
