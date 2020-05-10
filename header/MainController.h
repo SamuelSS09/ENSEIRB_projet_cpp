@@ -3,6 +3,7 @@
 
 #include "Interface.h"
 #include "Library.h"
+#include "UserController.h"
 
 using namespace std;
 
@@ -10,6 +11,7 @@ class MainController {
 private:
 	Interface myInterface;
 	Library myLibrary;
+	UserController Users;
 
 	//helper functions
 	void load_filename();
@@ -17,7 +19,7 @@ private:
 public:
 	//Constructor
 	//MainController();
-	MainController(string filename);
+	MainController(string data_filename, string users_filename);
 
 	//other functions
 	void start_program();

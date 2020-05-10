@@ -58,7 +58,7 @@ Media::Media(vector<string> attributs){
 
 	// we check if the id received is greater or equal  than the number of instances
 	// already existent. In this case, we have to correct the couting of IDs
-	if(readID >= this->nextID){ 
+	if(readID >= this->nextID){
 		this->nextID = readID + 1;
 	}
 	this->init(readID,attributs.at(2),attributs.at(3));
@@ -88,8 +88,7 @@ void Media::show_info(bool detailed){ // NOT MVC
 		case 5: s = "CD";
 				break;
 		case 6: s = "DVD";
-				break;				
-
+				break;
 	}
 
 	string space_char;
@@ -98,8 +97,9 @@ void Media::show_info(bool detailed){ // NOT MVC
 
 	cout << "ID: " << this->get_id() << space_char;
 	cout << "Type: " << s << space_char;
-	cout << "Titre: " << this->get_title() << space_char; 
+	cout << "Titre: " << this->get_title() << space_char;
 	cout << "Auteur: " << this->get_author() << endl;
+	
  }
 
 
@@ -109,4 +109,4 @@ void Media::set_info(){ // NOT MVC
 
 	cout << "Inserer l'auteur: ";
 	this->set_author(this->get_string_from_user());
-} 
+}

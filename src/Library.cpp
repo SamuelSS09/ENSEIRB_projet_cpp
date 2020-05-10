@@ -77,6 +77,7 @@ void Library::load_media(){
    }
 
 }
+
 void Library::write_media(){
 	std::vector<string> lines;
 	for(int i = 0; i < this->medias.size() ; i++){
@@ -85,6 +86,7 @@ void Library::write_media(){
 	}
 	this->db.write_database(lines);
 }
+
 bool Library::delete_by_id(int media_id){
 	bool isFound = false;
 	for(int i=0; i < this->medias.size(); i++){
@@ -164,25 +166,24 @@ bool Library::search_by_string(string character_sequence){
 }
 
 void Library::list_media(){
-
 	if(previousSearch){ // show only media which was prevoisly searched
 		for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
 			if((*it)->is_searched()){
 				(*it)->show_info(false); //not detailed information
-			}	
+			}
 		}
 	}
 	else{
 		for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
-			(*it)->show_info(false); //not detailed information	
+			(*it)->show_info(false); //not detailed information
 		}
 	}
-	
+
 }
 
 void Library::clear_search(){
 	for(vector<Media*>::iterator it = medias.begin(); it != medias.end(); ++it){
-		(*it)->set_searched(false); 
+		(*it)->set_searched(false);
 	}
 	this->previousSearch = false;
 }

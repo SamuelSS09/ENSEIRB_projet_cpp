@@ -24,15 +24,16 @@ vector<string> Database::read_database() throw (std::exception) {
 
 void Database::write_database(vector<string> lines) throw (std::exception) {
 
-	ofstream ofs(this->filename,std::ios::out);
-
+	//ofstream ofs(this->filename,std::ios::out);
+	ofstream ofs;
+	ofs.open(this->filename, std::ios::app);//avoid overwritting file
 	if(ofs.is_open()){
 
 		for(int i = 0; i < lines.size() - 1; i++){
 			ofs << lines.at(i) << endl;
 		}
 		if(lines.size() > 0 ){ // to avoid  a blank line at end of file
-			ofs << lines.back();
+			ofs << lines.back() << "\n";
 		}
 
 		ofs.close();
@@ -41,5 +42,5 @@ void Database::write_database(vector<string> lines) throw (std::exception) {
 	else{
 		throw std::exception();
 	}
-	
+
 }

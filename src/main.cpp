@@ -49,12 +49,12 @@ void test_exception(){
 	}catch(...){
 		// cerr << s.size() << endl;
 	}
-	
+
 }
 
 void test_main_controller(){
 	// test with: LOAD database/media_database.txt
-	MainController m("database/media_database.txt");
+	MainController m("database/media_database.txt","database/users_database.txt");
 	m.start_program();
 }
 
@@ -105,9 +105,7 @@ int main(){
 	// cout << d.check_file() << endl;
 
 	return 0;
-		
 
-	return 0;
 //Test if media *ges destroied
 	// vector<Book*> b;
 	// b.push_back(new Book());

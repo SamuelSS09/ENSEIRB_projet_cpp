@@ -9,12 +9,15 @@
 	- faire un namespace avec des constants et des fonctions outils
 	- verifier les destructeurs
 	- peut-etre que sera mieux faire la MediaInterface, et la mettre dans la classe Librairie. Dans ce cas, les methodes de gestion du MainController serions des methodes de la Librairie
-	
+
 	- retirer les elements dupliqués sur le vecteur après le SEARCH :https://www.techiedelight.com/remove-duplicates-vector-cpp/
 
 	-- changer les stoi par <boost/lexical_cast.hpp>https://www.techiedelight.com/convert-string-to-int-cpp/ , puisque celle si ne convert pas des string du type 10dsasa . par example: stoi("10sxc") = 10, ce qui n'est pas bon
 
 	-- verifier si c'est un bonne idée de faire le class_index être un attribut des classes.
 
-	
-	
+QUESTIONS:
+
+-Library::write_media() n'est pas utilisée?
+-le role des fonctions read_users et write_users?
+-Après BYE, le compteur de users est remis à zero, d'où id n'est pas bien determiné

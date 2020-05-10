@@ -1,16 +1,17 @@
 #include "MainController.h"
 
-MainController::MainController(string filename){
+MainController::MainController(string data_filename, string users_filename){
 	setlocale(LC_ALL, "french");
-	this->load_my_database(filename);
+	this->load_my_database(data_filename);
+	this->Users.set_db_filename(users_filename);
 	this->myInterface.hello();
-
+	this->myInterface.login();
+	this->myLibrary.clear_search(); //clear search history
 }
 
 void MainController::load_my_database(string filename){
 
 	this->myLibrary.set_db_filename(filename);
-
 	try{
 		this->myLibrary.load_media();
 		//AFICHER UNE MESSAGE
@@ -22,8 +23,33 @@ void MainController::load_my_database(string filename){
 void MainController::start_program(){
 
 	string command = "";
+
 	do{
-		vector<string> user_input = this->myInterface.get_user_command();
+		vector<string> user_input = this->myInterface.get_user_login();
+		command = user_input.at(0);
+		//this->Users.read_users();
+		if(command == "UTILISATEUR"){
+			this->myInterface.print("Entrer le nom d'utilisateur: ");
+			if (this->Users.validate_login(this->myInterface.get_string_from_user())){
+				this->myInterface.print("Entrer le mot de passe: ");
+				if (this->Users.validate_password(this->myInterface.get_string_from_user())){
+					this->myInterface.print("Vous êtes un administrateur!");
+				}
+				else{
+					this->myInterface.error("Vous n'êtes pas administrateur. Veuillez utiliser l'application comme client!");
+				}
+			}
+		}
+		else if(command == "ADMIN"){
+			User* u = new User();
+			u->set_info();
+			this->Users.add_user(u);
+		}
+		else if(command == "CLIENT"){
+			this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
+		}
+
+		user_input = this->myInterface.get_user_command();
 		command = user_input.at(0);
 		if(command == "CLEAR"){
 			this->myLibrary.clear_search();
@@ -103,7 +129,7 @@ void MainController::start_program(){
 			try{
 				id = stoi(user_input.at(1));
 				if(this->myLibrary.delete_by_id(id)){
-					this->myInterface.print("Le média a été éfacé.");				
+					this->myInterface.print("Le média a été éfacé.");
 				}
 				else{
 					this->myInterface.print("Aucune média trovué avec l'id fourni.");
@@ -114,7 +140,7 @@ void MainController::start_program(){
 		}
 
 		else if(command == "SHOW"){
-			
+
 			int id = 0;
 			try{
 				id = stoi(user_input.at(1));
