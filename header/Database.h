@@ -27,7 +27,7 @@ using namespace std;
 // Problem 2: A: read the file and construct objects VS B: return a vector of strings and later construc obj
 // A: less loops in the code, since we need only one to read and create the objects. 
 // But code becomes more procedural and less modulariazed, therefore changes are harder
-// B: more loops than before. Code is less reutilizable.
+// B: more loops than before. Code is more reutilizable.
 // CHOICE : B
 
 // -------------------------------------------------------------------------

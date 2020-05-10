@@ -13,8 +13,10 @@ class User {
 protected:
   static unsigned user_nextID;// counter for the unique id
   unsigned id;
+  
   string login;
   string password;
+  bool admin;
 
   //Initialisation of attributs
   void init(unsigned id, string login,string password);

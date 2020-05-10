@@ -111,6 +111,12 @@ void MainController::start_program(){
 
 		else if(command == "LOAD"){
 
+			//before loading a new dabatase, we should save changes to the
+			// curent one.
+			this->myLibrary.write_media();
+			this->myInterface.print("La base des donnés a été sauvegardée.");
+
+			
 			string original_filename = this->myLibrary.get_db_filename();
 			this->myLibrary.set_db_filename(user_input.at(1));
 
