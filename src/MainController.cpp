@@ -2,17 +2,18 @@
 
 MainController::MainController(string data_filename, string users_filename){
 	setlocale(LC_ALL, "french");
-	this->load_my_database(data_filename);
-	this->Users.set_db_filename(users_filename);
+	this->load_my_database(data_filename,users_filename);
 	this->myInterface.hello();
 	// this->myInterface.login();
 }
 
-void MainController::load_my_database(string filename){
+void MainController::load_my_database(string filename, string users_filename){
 
 	this->myLibrary.set_db_filename(filename);
+	this->Users.set_db_filename(users_filename);
 	try{
 		this->myLibrary.load_media();
+		this->Users.read_users();
 		//AFICHER UNE MESSAGE
 	}catch(exception e){
 		this->myInterface.print_error_db();
@@ -24,31 +25,31 @@ void MainController::start_program(){
 	string command = "";
 
 	do{
-		// vector<string> user_input = this->myInterface.get_user_login();
-		// command = user_input.at(0);
-		//this->Users.read_users();
-		// if(command == "UTILISATEUR"){
-		// 	this->myInterface.print("Entrer le nom d'utilisateur: ");
-		// 	if (this->Users.validate_login(this->myInterface.get_string_from_user())){
-		// 		this->myInterface.print("Entrer le mot de passe: ");
-		// 		if (this->Users.validate_password(this->myInterface.get_string_from_user())){
-		// 			this->myInterface.print("Vous êtes un administrateur!");
-		// 		}
-		// 		else{
-		// 			this->myInterface.error("Vous n'êtes pas administrateur. Veuillez utiliser l'application comme client!");
-		// 		}
-		// 	}
-		// }
-		// else if(command == "ADMIN"){
-		// 	User* u = new User();
-		// 	u->set_info();
-		// 	this->Users.add_user(u);
-		// }
-		// else if(command == "CLIENT"){
-		// 	this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
-		// }
+		vector<string> user_input = this->myInterface.get_user_login();
+		command = user_input.at(0);
+		this->Users.write_users();
+		if(command == "UTILISATEUR"){
+			this->myInterface.print("Entrer le nom d'utilisateur: ");
+			if (this->Users.validate_login(this->myInterface.get_string_from_user())){
+				this->myInterface.print("Entrer le mot de passe: ");
+				if (this->Users.validate_password(this->myInterface.get_string_from_user())){
+					this->myInterface.print("Vous êtes un administrateur!");
+				}
+				else{
+					this->myInterface.error("Vous n'êtes pas administrateur. Veuillez utiliser l'application comme client!");
+				}
+			}
+		}
+		else if(command == "ADMIN"){
+			User u;
+			u.set_info();
+			this->Users.add_user(u);
+		}
+		else if(command == "CLIENT"){
+			this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
+		}
 
-		vector<string> user_input = this->myInterface.get_user_command();
+		user_input = this->myInterface.get_user_command();
 		command = user_input.at(0);
 		if(command == "CLEAR"){
 			this->myLibrary.clear_search();
@@ -115,8 +116,9 @@ void MainController::start_program(){
 			this->myLibrary.write_media();
 			this->myInterface.print("La base des donnés a été sauvegardée.");
 
-			
+
 			string original_filename = this->myLibrary.get_db_filename();
+			string original_user_filename = this->Users.get_db_filename();
 			this->myLibrary.set_db_filename(user_input.at(1));
 
 			try{
@@ -124,7 +126,7 @@ void MainController::start_program(){
 				 this->myInterface.print("Le fichier a été chargé.");
 
 			}catch(exception e){
-				this->load_my_database(original_filename);
+				this->load_my_database(original_filename,original_user_filename);
 			}
 		}
 

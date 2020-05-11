@@ -24,8 +24,7 @@ vector<string> Database::read_database() throw (std::exception) {
 
 void Database::write_database(vector<string> lines) throw (std::exception) {
 
-	//ofstream ofs(this->filename,std::ios::out);
-	ofstream ofs(this->filename,std::ios_base::out);//avoid overwritting file
+	ofstream ofs(this->filename,std::ios::out);
 	if(ofs.is_open()){
 
 		for(long unsigned int i = 0; i < lines.size() - 1; i++){

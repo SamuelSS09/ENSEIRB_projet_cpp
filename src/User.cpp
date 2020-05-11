@@ -13,10 +13,22 @@ User::User(string login, string password){
   this->user_nextID++;
 }
 
+User::User(vector<string> attributs){
+	int readID = stoi(attributs.at(1));
+
+	// we check if the id received is greater or equal  than the number of instances
+	// already existent. In this case, we have to correct the couting of IDs
+	if(readID >= this->user_nextID){
+		this->user_nextID = readID + 1;
+	}
+	this->init(readID,attributs.at(2),attributs.at(3));
+}
+
 void User::init(unsigned id, string login,string password){
     this->set_id(id);
     this->set_login(login);
     this->set_password(password);
+    this->Isadmin = false;
   }
 
 string User::get_string_from_user(){

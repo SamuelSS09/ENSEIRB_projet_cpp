@@ -15,7 +15,7 @@ private:
 
 	//helper functions
 	void load_filename();
-	void load_my_database(string filename);
+	void load_my_database(string filename, string users_filename);
 public:
 	//Constructor
 	//MainController();

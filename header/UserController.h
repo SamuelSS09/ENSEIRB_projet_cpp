@@ -14,7 +14,7 @@ using namespace std;
 
 class UserController {
 private:
-  vector<User*> users;
+  vector<User> users;
   Database db;
 
 public:
@@ -32,9 +32,9 @@ public:
   string get_db_filename(){return this->db.get_filename();}
 
   //Other functions
-//  void read_users();
+  void read_users();
   void write_users();
-  void add_user(User* user);
+  void add_user(User user);
   bool validate_login(string user_string);
   bool validate_password(string user_string);
 };

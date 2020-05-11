@@ -13,10 +13,10 @@ class User {
 protected:
   static unsigned user_nextID;// counter for the unique id
   unsigned id;
-  
+
   string login;
   string password;
-  bool admin;
+  bool Isadmin;
 
   //Initialisation of attributs
   void init(unsigned id, string login,string password);
@@ -25,6 +25,8 @@ public:
   //Constructors
   User();
   User(string login, string password);
+  User(vector<string> attributs); // used to construct from file or from interface.
+
 
   //Destructors
   ~User(){};
