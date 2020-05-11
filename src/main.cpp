@@ -10,7 +10,7 @@ void test_map(){
 
 void test_user(){
 	User u2("samuel","monpass",false);
-	User u1(string "yousra", string "monpass2",false;
+	User u1("yousra", "monpass2",false);
 
 	UserController uc("database/users_database.txt");
 	
