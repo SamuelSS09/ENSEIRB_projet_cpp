@@ -124,7 +124,7 @@ bool Interface::validate_option(vector<string> optionSplit){//validate every pos
 
 		string userOption = optionSplit.at(0);
 
-		for (int i = 0; i < this->possible_options.size() ; i++){
+		for (long unsigned int i = 0; i < this->possible_options.size() ; i++){
 
 			// the following vector has OPTION at first position (at 0)
 			// and NUMBER OF NECESSARY ARGUMENTS at second position (at 1)

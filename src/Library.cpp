@@ -14,7 +14,7 @@ Library::~Library(){
 	// try to write media vector to a file
 	vector<string> medias_string;
 
-	for (int i=0;i<this->medias.size();i++){
+	for (long unsigned int i=0;i<this->medias.size();i++){
 
 		//populate a vector of strings, each entry with a media in
 		// in string format
@@ -40,7 +40,7 @@ Library::~Library(){
 void Library::clear_medias(){
 
 	// clear memory allocation
-	for(int i=0 ; i < this->medias.size() ; i++){
+	for(long unsigned int i=0 ; i < this->medias.size() ; i++){
 		delete this->medias.at(i);
 	}
 
@@ -58,7 +58,7 @@ vector<Media*> Library::get_medias(){ //
 
 	else{ // if there was a previous search
 		vector<Media*> medias_filtered;
-		for(int i = 0; i < medias.size() ; i++){
+		for(long unsigned int i = 0; i < medias.size() ; i++){
 			if(this->medias.at(i)->is_searched()){
 				//add only medias whose isSearch attribut is true
 				medias_filtered.push_back(this->medias.at(i));
@@ -71,7 +71,7 @@ vector<Media*> Library::get_medias(){ //
 
 void Library::load_media(){
    vector<string> media_string = this->db.read_database();
-   for(int i = 0; i < media_string.size(); i++){
+   for(long unsigned int i = 0; i < media_string.size(); i++){
    	//OBS1: should not create duplicated Media.
       this->medias.push_back(this->media_from_string(media_string.at(i)));
    }
@@ -80,7 +80,7 @@ void Library::load_media(){
 
 void Library::write_media(){
 	std::vector<string> lines;
-	for(int i = 0; i < this->medias.size() ; i++){
+	for(long unsigned int i = 0; i < this->medias.size() ; i++){
 
 		lines.push_back(medias.at(i)->to_string());
 	}
@@ -89,7 +89,7 @@ void Library::write_media(){
 
 bool Library::delete_by_id(int media_id){
 	bool isFound = false;
-	for(int i=0; i < this->medias.size(); i++){
+	for(long unsigned int i=0; i < this->medias.size(); i++){
 		if (medias.at(i)->get_id() == media_id){
 			this->medias.erase(medias.begin()+i);
 			isFound=true;
@@ -102,7 +102,7 @@ bool Library::show_media_by_id(int media_id){
 
 	bool isFound = false;
 
-	for(int i=0; i < this->medias.size(); i++){
+	for(long unsigned int i=0; i < this->medias.size(); i++){
 		if (medias.at(i)->get_id() == media_id){
 			// this->medias.at(i)->set_searched(true);
 			isFound = true;
@@ -120,7 +120,7 @@ bool Library::search_by_string(string character_sequence){
 	//this function has a different behavioral for each state of this->previosSearch
 
 	if(!this->previousSearch){ //CASE OF NO PREVIOUS SEARCH
-		for(int i = 0; i < this->medias.size(); i++){ // iterate through the media vector
+		for(long unsigned int i = 0; i < this->medias.size(); i++){ // iterate through the media vector
 
 			string mediaString = medias.at(i)->to_string();
 
@@ -137,7 +137,7 @@ bool Library::search_by_string(string character_sequence){
 
 	else{ // CASE THERE WAS A PREVIOUS A SEARCH
 
-		for(int i = 0; i < this->medias.size(); i++){ // iterate through indexes vector
+		for(long unsigned int i = 0; i < this->medias.size(); i++){ // iterate through indexes vector
 
 			if(this->medias.at(i)->is_searched()){// we should only check the medias which have already been searched
 

@@ -32,7 +32,7 @@ public:
   string get_db_filename(){return this->db.get_filename();}
 
   //Other functions
-  void read_users();
+//  void read_users();
   void write_users();
   void add_user(User* user);
   bool validate_login(string user_string);

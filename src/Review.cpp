@@ -21,7 +21,7 @@ Review::Review(vector<string> attributs)
 
 	// vector to hold the articles
 	vector<string> artc(attributs.begin() + 9 , attributs.end());
-	
+
 	this->init(attributs.at(8),artc);
 }
 
@@ -31,10 +31,10 @@ string Review::to_string(){
 
 	string s   = book + "," + this->get_editor();
 
-	for (int i = 0; i < this->articles.size();i++){
+	for (long unsigned int i = 0; i < this->articles.size();i++){
 		s = s + "," + articles.at(i);
 	}
-	
+
 	return s;
 }
 
@@ -42,7 +42,7 @@ void Review::show_info(bool detailed){
 	Book::show_info(detailed);
 	if(detailed){
 		cout << "Editeur: " << this->get_editor() << endl;
-		for(int i = 0 ; i < this->articles.size() ; i++){
+		for(long unsigned int i = 0 ; i < this->articles.size() ; i++){
 			cout << "Article " << i + 1 << ": " << articles.at(i) << endl;
 		}
 	}
@@ -70,5 +70,5 @@ void Review::set_info(){
 	}
 
 	this->set_articles(tempArticles);
-		
+
 }
