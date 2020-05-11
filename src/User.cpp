@@ -4,31 +4,31 @@
 unsigned User::user_nextID = 0;
 
 User::User(){
-  this->init(this->user_nextID,"", "");
+  this->init(this->user_nextID,"", "",false);
 	this->user_nextID++; // increment the counter of IDs
 }
 
-User::User(string login, string password){
-  this->init(this->user_nextID,login,password);
+User::User(string login, string password,bool admin){
+  this->init(this->user_nextID,login,password,admin);
   this->user_nextID++;
 }
 
 User::User(vector<string> attributs){
-	int readID = stoi(attributs.at(1));
+	int readID = stoi(attributs.at(0));
 
 	// we check if the id received is greater or equal  than the number of instances
 	// already existent. In this case, we have to correct the couting of IDs
 	if(readID >= this->user_nextID){
 		this->user_nextID = readID + 1;
 	}
-	this->init(readID,attributs.at(2),attributs.at(3));
+	this->init(readID,attributs.at(1),attributs.at(2),);
 }
 
-void User::init(unsigned id, string login,string password){
+void User::init(unsigned id, string login,string password,bool admin){
     this->set_id(id);
     this->set_login(login);
     this->set_password(password);
-    this->Isadmin = false;
+    this->admin = admin;
   }
 
 string User::get_string_from_user(){
@@ -44,7 +44,7 @@ string User::get_string_from_user(){
 }
 
 string User::to_string(){
-  return std::to_string(get_id()) + "," + get_login() + "," + get_password();
+  return std::to_string(get_id()) + "," + get_login() + "," + get_password()+ "," + std::to_string(this->admin);
 }
 
 void User::show_info(){

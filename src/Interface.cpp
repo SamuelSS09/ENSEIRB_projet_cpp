@@ -66,6 +66,7 @@ vector<string> Interface::get_user_login(){
 
 }
 
+
 vector<string> Interface::get_user_command(){
 	cout << endl;
 	cout << "Veuillez utiliser une des options suivantes: " << endl;

@@ -34,7 +34,7 @@ private:
 	Database db;
 public:
 	// Constructors
-	Library(){};			 	// default constructor. SHOULD NOT BE USED BY ITSELF
+	Library();			 	// default constructor. SHOULD NOT BE USED BY ITSELF
 	Library(string filename);
 
 	//Destructors:

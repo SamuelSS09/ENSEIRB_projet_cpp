@@ -8,6 +8,19 @@ void test_map(){
 
 }
 
+void test_user(){
+	User u2("samuel","monpass",false);
+	User u1(string "yousra", string "monpass2",false;
+
+	UserController uc("database/users_database.txt");
+	
+	uc.add_user(u1); uc.add_user(u2);
+
+	uc.write_users();
+
+
+}
+
 void test_multi_id(){
 
 
@@ -93,8 +106,8 @@ void test_vector_string_constructor(){
 int main(){
 	// //test_multi_id();
 	// //test_exception();
-	test_main_controller();
-
+	//test_main_controller();
+	test_user();
 	// // Book b;
 	// // b.show_info();
 	// //test_interface();

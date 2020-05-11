@@ -9,6 +9,11 @@ Library::Library(string filename){
 	this->previousSearch=false;
 }
 
+
+Library::Library(){
+	this->previousSearch=false;
+}
+
 Library::~Library(){
 
 	// try to write media vector to a file
