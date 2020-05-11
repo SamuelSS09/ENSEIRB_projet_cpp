@@ -25,31 +25,31 @@ void MainController::start_program(){
 	string command = "";
 
 	do{
-		vector<string> user_input = this->myInterface.get_user_login();
-		command = user_input.at(0);
-		this->Users.write_users();
-		if(command == "UTILISATEUR"){
-			this->myInterface.print("Entrer le nom d'utilisateur: ");
-			if (this->Users.validate_login(this->myInterface.get_string_from_user())){
-				this->myInterface.print("Entrer le mot de passe: ");
-				if (this->Users.validate_password(this->myInterface.get_string_from_user())){
-					this->myInterface.print("Vous êtes un administrateur!");
-				}
-				else{
-					this->myInterface.error("Vous n'êtes pas administrateur. Veuillez utiliser l'application comme client!");
-				}
-			}
-		}
-		else if(command == "ADMIN"){
-			User u;
-			u.set_info();
-			this->Users.add_user(u);
-		}
-		else if(command == "CLIENT"){
-			this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
-		}
+		// vector<string> user_input = this->myInterface.get_user_login();
+		// command = user_input.at(0);
+		// this->Users.write_users();
+		// if(command == "UTILISATEUR"){
+		// 	this->myInterface.print("Entrer le nom d'utilisateur: ");
+		// 	if (this->Users.validate_login(this->myInterface.get_string_from_user())){
+		// 		this->myInterface.print("Entrer le mot de passe: ");
+		// 		if (this->Users.validate_password(this->myInterface.get_string_from_user())){
+		// 			this->myInterface.print("Vous êtes un administrateur!");
+		// 		}
+		// 		else{
+		// 			this->myInterface.error("Vous n'êtes pas administrateur. Veuillez utiliser l'application comme client!");
+		// 		}
+		// 	}
+		// }
+		// else if(command == "ADMIN"){
+		// 	User u;
+		// 	u.set_info();
+		// 	this->Users.add_user(u);
+		// }
+		// else if(command == "CLIENT"){
+		// 	this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
+		// }
 
-		user_input = this->myInterface.get_user_command();
+		vector<string> user_input = this->myInterface.get_user_command();
 		command = user_input.at(0);
 		if(command == "CLEAR"){
 			this->myLibrary.clear_search();
@@ -64,6 +64,8 @@ void MainController::start_program(){
 			this->myLibrary.clear_medias();
 			this->myInterface.print_reset();
 		}
+
+
 
 		else if(command == "ADD"){
 
@@ -107,6 +109,17 @@ void MainController::start_program(){
 			}
 
 			// delete m;
+		}
+
+		else if(command == "SAVE"){
+			
+			this->myLibrary.set_db_filename(user_input.at(1));
+			try{
+				this->myLibrary.write_media();
+			}catch(...){
+				this->myInterface.error("Le fichier n'a pas pu été cré.");
+			}
+			
 		}
 
 		else if(command == "LOAD"){

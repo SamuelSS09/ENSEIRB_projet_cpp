@@ -4,6 +4,7 @@
 Interface::Interface(){
 	this->possible_options.push_back("BYE,0");
 	this->possible_options.push_back("CLEAR,0");
+	this->possible_options.push_back("SAVE,1");
 	this->possible_options.push_back("LIST,0");
 	this->possible_options.push_back("ADD,1");
 	this->possible_options.push_back("LOAD,1");
@@ -14,6 +15,7 @@ Interface::Interface(){
 	this->possible_options.push_back("UTILISATEUR,0");
 	this->possible_options.push_back("ADMIN,0");
 	this->possible_options.push_back("CLIENT,0");
+
 }
 
 string Interface::get_string_from_user(){
@@ -68,6 +70,7 @@ vector<string> Interface::get_user_command(){
 	cout << endl;
 	cout << "Veuillez utiliser une des options suivantes: " << endl;
 	cout << "- LOAD filename : charger la médiathèque avec le fichier nommé filename." << endl;
+	cout << "- SAVE filename : sauvegarder la médiathèque sur le fichier nommé filename." << endl;
 	cout << "- SEARCH chaine : chercher la médiathèque avec la chaine fournie." << endl;
 	cout << "- LIST          : afficher la médiathèque. Garde les résultats d'une recherche précedente." << endl;
 	cout << "- CLEAR         : jetter les résultats des recherches accumulées." << endl;

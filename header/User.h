@@ -16,7 +16,7 @@ protected:
 
   string login;
   string password;
-  bool Isadmin;
+  bool admin;
 
   //Initialisation of attributs
   void init(unsigned id, string login,string password);
@@ -35,13 +35,15 @@ public:
   unsigned get_id(){return this->id;}
   string get_login(){return this->login;}
   string get_password(){return this->password;}
+  bool   get_admin(){return this->admin;}
 
   //Setters
   //set id
   void set_id(unsigned id){this->id=id;}
   void set_login(string login){this->login=login;}
   void set_password(string password){this->password=password;}
-
+  void set_admin(bool admin){this->admin=admin;}
+  
   //Violation of the MVC, only here for the sake of simplicity.
 	string get_string_from_user(); // function to obtain a single line inserted
 								   // by the user in string format

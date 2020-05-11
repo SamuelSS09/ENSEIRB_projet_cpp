@@ -11,15 +11,12 @@ UserController::~UserController(){
   vector<string> lines;
   for (long unsigned int i=0; i<this->users.size(); i++){
     lines.push_back(users.at(i).to_string());
-    //delete this->users.at(i);//allocation of memory by pointer needs to be destroyed
   }
-  this->users.clear();//it is used to remove/clear all elements of the vector,
-                     //it makes the 0 sized vector after removing all elements.
+
   try{
 		this->db.write_database(lines);
-		// cout << "Library: j'appelle mon destructeur, tout va bien!" << endl;
 	}catch(...){
-		//
+
 	}
 }
 
@@ -47,20 +44,23 @@ void UserController::add_user(User user){
 
 bool UserController::validate_login(string user_string){
   bool validLogin = false;
+
   for (long unsigned int i=0; i<this->users.size(); i++){
+
     if (users.at(i).get_login()==user_string){
       validLogin = true;
     }
+    
   }
   return validLogin;
 }
 
-bool UserController::validate_password(string user_string){
-  bool validPassword = false;
-  for (long unsigned int i=0; i<this->users.size(); i++){
-    if (users.at(i).get_password()==user_string){
-      validPassword = true;
-    }
-  }
-  return validPassword;
-}
+// bool UserController::validate_password(string user_string){
+//   bool validPassword = false;
+//   for (long unsigned int i=0; i<this->users.size(); i++){
+//     if (users.at(i).get_password()==user_string){
+//       validPassword = true;
+//     }
+//   }
+//   return validPassword;
+// }
