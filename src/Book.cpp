@@ -34,7 +34,7 @@ Book::Book(vector<string> attributs)
 string Book::to_string(){
 	string s = Media::to_string();
 
-	s 	     = s + "," + std::to_string(get_publishing_year()) + "," + std::to_string(get_number_of_pages()) + ",";
+	s 	     = s + "," + std::to_string(get_publishing_year()) + "," + std::to_string(get_number_of_pages());
 	s   	 = s + "," + get_summary() + "," + get_collection();
 	return s;
 }

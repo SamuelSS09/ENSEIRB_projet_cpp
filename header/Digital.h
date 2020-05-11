@@ -37,9 +37,9 @@ public:
 	void set_path(string path){this->path=path;}
 	void init(int size,string extension,string path);
 	//Other functions
-	string to_string();
-	void show_info(bool detailed);
-	void set_info();
+	virtual string to_string();
+	virtual void show_info(bool detailed);
+	virtual void set_info();
 };
 
 #endif

@@ -67,7 +67,7 @@ Media::Media(vector<string> attributs){
 //OTHER FUNCTIONS
 
 string Media::to_string(){ // formating to write on file.
-	return std::to_string(class_index) + "," + std::to_string(get_id()) + "," + get_title() + "," + get_author();
+	return std::to_string(class_index) + "," + std::to_string(this->id) + ","  + get_title() + "," + get_author();
 }
 
 void Media::show_info(bool detailed){ // NOT MVC

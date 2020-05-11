@@ -10,10 +10,12 @@ Cd::Cd():Vhs(){
 Cd::Cd(string title,string author,int length,string producer,int tracksNumber)
 : Vhs(title,author,length,producer) {
 	this->set_tracks_number(tracksNumber);
+	this->class_index = 5;
 }
 
 Cd::Cd(std::vector<string> attributs) : Vhs(attributs) {
 	this->set_tracks_number(stoi(attributs.at(6)));
+	this->class_index = 5;
 }
 
 string Cd::to_string(){

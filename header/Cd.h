@@ -28,9 +28,9 @@ public:
 	//Setters
 	void set_tracks_number(int tracksNumber){this->tracksNumber=tracksNumber;}
 	//Other functions
-	string to_string();
-	void show_info(bool detailed);
-	void set_info();
+	virtual string to_string();
+	virtual void show_info(bool detailed);
+	virtual void set_info();
 };
 
 #endif

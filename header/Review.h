@@ -34,9 +34,9 @@ public:
 	void init(string editor, std::vector<string> articles);
 	//Other functions
 
-	string to_string();
-	void show_info(bool detailed);
-	void set_info();
+	virtual string to_string();
+	virtual void show_info(bool detailed);
+	virtual void set_info();
 
 };
 #endif
