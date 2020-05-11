@@ -82,6 +82,8 @@ public:
 	//Other functions
 	virtual string to_string() = 0; //pure virtual function => Abstract Class
 
+	virtual string get_search_string();
+
 	//NT: showing and constructing functions. Idally this should be in a interface,
 	//but the code is simple enough to allow us to do it here
 

@@ -70,6 +70,30 @@ string Media::to_string(){ // formating to write on file.
 	return std::to_string(class_index) + "," + std::to_string(this->id) + ","  + get_title() + "," + get_author();
 }
 
+string Media::get_search_string(){
+	
+	string s;
+
+	switch(this->class_index){
+		case 0: s = "Media";
+				break;
+		case 1: s = "Livre";
+				break;
+		case 2: s = "Article";
+				break;
+		case 3: s = "Numérique";
+				break;
+		case 4: s = "VHS";
+				break;
+		case 5: s = "CD";
+				break;
+		case 6: s = "DVD";
+				break;
+	}
+
+	return s + "," + this->to_string();
+}
+
 void Media::show_info(bool detailed){ // NOT MVC
 
 	string s;

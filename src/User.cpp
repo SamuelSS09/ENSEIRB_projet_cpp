@@ -22,8 +22,13 @@ User::User(vector<string> attributs){
 		this->user_nextID = readID + 1;
 	}
 
-  if(attributs.at(3) == "1"){readAdmin == true;}
-  else{readAdmin=false;}
+  if(attributs.at(3) == "1"){
+    readAdmin = true;
+  } 
+  else{
+    readAdmin =  false;
+  }
+
 	this->init(readID,attributs.at(1),attributs.at(2),readAdmin);
 }
 

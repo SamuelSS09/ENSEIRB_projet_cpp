@@ -127,7 +127,7 @@ bool Library::search_by_string(string character_sequence){
 	if(!this->previousSearch){ //CASE OF NO PREVIOUS SEARCH
 		for(long unsigned int i = 0; i < this->medias.size(); i++){ // iterate through the media vector
 
-			string mediaString = medias.at(i)->to_string();
+			string mediaString = medias.at(i)->get_search_string();
 
 			if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
 
@@ -146,7 +146,7 @@ bool Library::search_by_string(string character_sequence){
 
 			if(this->medias.at(i)->is_searched()){// we should only check the medias which have already been searched
 
-				string mediaString = medias.at(i)->to_string();
+				string mediaString = medias.at(i)->get_search_string();
 
 				if(character_sequence.size() < mediaString.size() ){ //char_seq must be smaller than mediaString
 

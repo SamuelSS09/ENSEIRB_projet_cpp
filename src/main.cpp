@@ -4,7 +4,23 @@
 
 using namespace std;
 
-void test_map(){
+void test_search_string(){
+	vector<string> s;
+	s.push_back("0");
+	s.push_back("10");
+	s.push_back("Sertão");
+	s.push_back("Amado");
+
+	s.push_back("44444");
+	s.push_back("500");
+	s.push_back("Bresil");
+	s.push_back("Bresil ancienne");
+	s.push_back("Editeur abs");
+	s.push_back("article 1");
+	s.push_back("article 2");
+
+	Media* m = new Review(s);
+	cout << m->to_string() << endl;
 
 }
 
@@ -110,8 +126,12 @@ void test_vector_string_constructor(){
 int main(){
 	// //test_multi_id();
 	// //test_exception();
-	//test_main_controller();
-	test_user();
+	test_main_controller();
+	//test_user();
+
+	//test_search_string();
+
+
 	// // Book b;
 	// // b.show_info();
 	// //test_interface();
