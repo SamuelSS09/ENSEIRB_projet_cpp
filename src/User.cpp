@@ -47,9 +47,13 @@ string User::get_string_from_user(){
 }
 
 string User::to_string(){
-  return std::to_string(get_id()) + "," + get_login() + "," + get_password()+ "," + std::to_string(this->admin);
-}
+  string is_admin;
+  
+  if(this->admin){is_admin="1";} else{is_admin="0";}
 
+  return std::to_string(get_id()) + "," + get_login() + "," + get_password()+ "," + is_admin;
+
+}
 void User::show_info(){
   cout << "ID: " << this->get_id() << endl;
   cout << "Login: " << this->get_login() << endl;

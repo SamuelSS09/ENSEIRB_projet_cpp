@@ -9,11 +9,15 @@ void test_map(){
 }
 
 void test_user(){
-	User u2("samuel","monpass",false);
-	User u1("yousra", "monpass2",false);
 
 	UserController uc("database/users_database.txt");
+	uc.read_users();
+
+	User u2("test1","monpass",true);
+	User u1("test2", "monpass2",true);
+
 	
+
 	uc.add_user(u1); uc.add_user(u2);
 
 	uc.write_users();
