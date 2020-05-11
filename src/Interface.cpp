@@ -12,8 +12,8 @@ Interface::Interface(){
 	this->possible_options.push_back("SEARCH,1");
 	this->possible_options.push_back("DELETE,1");
 	this->possible_options.push_back("SHOW,1");
-	this->possible_options.push_back("UTILISATEUR,0");
-	this->possible_options.push_back("ADMIN,0");
+	this->possible_options.push_back("M'IDENTIFIER,0");
+	this->possible_options.push_back("M'INSCRIRE,0");
 	this->possible_options.push_back("CLIENT,0");
 
 }
@@ -37,7 +37,7 @@ int Interface::get_int_from_user(){
     try{
     	user_int = stoi(this->get_string_from_user());
     }catch(...){
-    	cout << "Veuillez inserer une nombre valide" << endl;
+    	cout << "Veuillez insérer une nombre valide!" << endl;
     	this->get_int_from_user(); // try again
     }
 
@@ -47,8 +47,8 @@ int Interface::get_int_from_user(){
 vector<string> Interface::get_user_login(){
 	cout << endl;
 	cout << "Veuillez choisir entre l'une des options d'utilisations suivantes: " << endl;
-	cout << "UTILISATEUR : connectez-vous à votre compte." << endl;
-	cout << "ADMIN : s'enregister autant qu'aministrateur." << endl;
+	cout << "M'IDENTIFIER : connectez-vous à votre compte administrateur." << endl;
+	cout << "M'INSCRIRE : m'inscrire pour la première fois comme administrateur." << endl;
 	cout << "CLIENT : utiliser l'application comme client." << endl;
 
 	vector<string> optionSplit = helper::split_string(this->get_string_from_user(),' ');
@@ -56,7 +56,7 @@ vector<string> Interface::get_user_login(){
 
 	while(cin.bad() || !(this->validate_option(optionSplit)) ){
 
-		cout << "Veuillez inserer une option valide " << endl;
+		cout << "Veuillez insérer une option valide! " << endl;
 
 		optionSplit = helper::split_string(this->get_string_from_user(),' ');
 
@@ -67,18 +67,22 @@ vector<string> Interface::get_user_login(){
 }
 
 
-vector<string> Interface::get_user_command(){
+vector<string> Interface::get_user_command(bool Isadmin){
 	cout << endl;
-	cout << "Veuillez utiliser une des options suivantes: " << endl;
-	cout << "- LOAD filename : charger la médiathèque avec le fichier nommé filename." << endl;
-	cout << "- SAVE filename : sauvegarder la médiathèque sur le fichier nommé filename." << endl;
+	cout << "Veuillez utiliser l'une des options suivantes: " << endl;
 	cout << "- SEARCH chaine : chercher la médiathèque avec la chaine fournie." << endl;
 	cout << "- LIST          : afficher la médiathèque. Garde les résultats d'une recherche précedente." << endl;
 	cout << "- CLEAR         : jetter les résultats des recherches accumulées." << endl;
-	cout << "- RESET         : vider la base de données de la médiathèque." << endl;
-	cout << "- ADD type      : ajouter un média du type fourni." << endl;
 	cout << "- SHOW id       : afficher la médiathèque de l'identifiant fourni" << endl;
-	cout << "- DELETE id     : supprimer la médiathèque de l'identifiant fourni." << endl;
+
+	if (Isadmin){
+		cout << "- LOAD filename : charger la médiathèque avec le fichier nommé filename." << endl;
+		cout << "- SAVE filename : sauvegarder la médiathèque sur le fichier nommé filename." << endl;
+		cout << "- RESET         : vider la base de données de la médiathèque." << endl;
+		cout << "- ADD type      : ajouter un média du type fourni." << endl;
+		cout << "- DELETE id     : supprimer la médiathèque de l'identifiant fourni." << endl;
+	}
+
 	cout << "- BYE           : sortir du logiciel." << endl;
 
 	vector<string> optionSplit = helper::split_string(this->get_string_from_user(),' ');
@@ -86,7 +90,7 @@ vector<string> Interface::get_user_command(){
 
 	while(cin.bad() || !(this->validate_option(optionSplit)) ){
 
-		cout << "Veuillez inserer une option valide " << endl;
+		cout << "Veuillez insérer une option valide!" << endl;
 
 		optionSplit = helper::split_string(this->get_string_from_user(),' ');
 
@@ -117,7 +121,7 @@ void Interface::goodbye(){
 }
 
 void Interface::print_reset(){
-	cout << endl << "La base des données a été efacée." << endl;
+	cout << endl << "La base de données a été effacée." << endl;
 }
 
 bool Interface::validate_option(vector<string> optionSplit){//validate every possible option
@@ -144,7 +148,7 @@ bool Interface::validate_option(vector<string> optionSplit){//validate every pos
 				}
 
 				else{
-					cout << "Veuillez inserer le bon nombre d'arguments" << endl;
+					cout << "Veuillez insérer le bon nombre d'arguments!" << endl;
 					return false;
 				}
 			}

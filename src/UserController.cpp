@@ -42,25 +42,23 @@ void UserController::add_user(User user){
     this->users.push_back(user);
 }
 
-bool UserController::validate_login(string user_string){
+bool UserController::validate_username(string user_string){
   bool validLogin = false;
-
   for (long unsigned int i=0; i<this->users.size(); i++){
-
     if (users.at(i).get_login()==user_string){
-      validLogin = true;
+        validLogin = true;
     }
-    
   }
   return validLogin;
 }
 
-// bool UserController::validate_password(string user_string){
-//   bool validPassword = false;
-//   for (long unsigned int i=0; i<this->users.size(); i++){
-//     if (users.at(i).get_password()==user_string){
-//       validPassword = true;
-//     }
-//   }
-//   return validPassword;
-// }
+bool UserController::validate_password(string user_string){
+  bool validPassword = false;
+  for (long unsigned int i=0; i<this->users.size(); i++){
+    if (users.at(i).get_password()==user_string){
+      this->users.at(i).set_admin(true);
+      validPassword = true;
+    }
+  }
+  return validPassword;
+}

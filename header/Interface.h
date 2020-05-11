@@ -33,7 +33,7 @@ public:
 	Interface();
 
 	//other functions
-	vector<string> get_user_command();
+	vector<string> get_user_command(bool Isadmin);
 	vector<string> get_user_login();
 	//void list_media(std::vector<Media*> medias);
 	//Media* media_from_input(string media_type); // launches option to add info about

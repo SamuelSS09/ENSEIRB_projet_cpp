@@ -21,3 +21,10 @@ QUESTIONS:
 -Library::write_media() n'est pas utilisée?
 -le role des fonctions read_users et write_users?
 -Après BYE, le compteur de users est remis à zero, d'où id n'est pas bien determiné
+
+
+A faire:
+
+-bool sur MainController pour les droits des utilisateurs
+-bool sur interface pour afficher les commandes de chaque utilisateurs
+-une seule methode validate_login() du user

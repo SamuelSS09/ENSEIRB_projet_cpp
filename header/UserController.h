@@ -35,7 +35,7 @@ public:
   void read_users();
   void write_users();
   void add_user(User user);
-  bool validate_login(string user_string);
+  bool validate_username(string user_string);
   bool validate_password(string user_string);
 };
 

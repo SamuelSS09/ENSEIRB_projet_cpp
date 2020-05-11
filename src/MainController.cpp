@@ -24,36 +24,46 @@ void MainController::start_program(){
 
 	string command = "";
 
-	do{
-		
-		// vector<string> user_input = this->myInterface.get_user_login();
-		// command = user_input.at(0);
-		// this->Users.write_users();
-		// if(command == "UTILISATEUR"){
-		// 	this->myInterface.print("Entrer le nom d'utilisateur: ");
-		// 	if (this->Users.validate_login(this->myInterface.get_string_from_user())){
-		// 		this->myInterface.print("Entrer le mot de passe: ");
-		// 		if (this->Users.validate_password(this->myInterface.get_string_from_user())){
-		// 			this->myInterface.print("Vous êtes un administrateur!");
-		// 		}
-		// 		else{
-		// 			this->myInterface.error("Vous n'êtes pas administrateur. Veuillez utiliser l'application comme client!");
-		// 		}
-		// 	}
-		// }
-		// else if(command == "ADMIN"){
-		// 	User u;
-		// 	u.set_info();
-		// 	this->Users.add_user(u);
-		// }
-		// else if(command == "CLIENT"){
-		// 	this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
-		// }
+	vector<string> user_input = this->myInterface.get_user_login();
+	command = user_input.at(0);
+	bool isAdmin = false;
+	if(command == "M'IDENTIFIER"){
+		this->myInterface.print("Entrez le nom d'utilisateur: ");
+		if (this->Users.validate_username(this->myInterface.get_string_from_user())){
+			this->myInterface.print("Entrez le mot de passe: ");
+			if (this->Users.validate_password(this->myInterface.get_string_from_user())){
+				this->myInterface.print("Identification réussie!");
+				isAdmin = true;
+			}
+		}
+		else{
+			this->myInterface.error("Votre identification a échouché. Vous pouvez utiliser l'application comme client!");
+		}
+	}
+	else if(command == "M'INSCRIRE"){
+		User u;
+		u.set_info();
+		this->Users.add_user(u);
+		u.set_admin(true);
+		if (u.get_admin()){
+			this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme administrateur!");
+			isAdmin = true;
+		}
+		else{
+			this->myInterface.error("Votre inscription a échouchée. Utilisez l'application comme client!");
+		}
+	}
+	else if(command == "CLIENT"){
+		this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
+	}
 
-		vector<string> user_input = this->myInterface.get_user_command();
+	do{
+
+		user_input = this->myInterface.get_user_command(isAdmin);
 		command = user_input.at(0);
 		if(command == "CLEAR"){
 			this->myLibrary.clear_search();
+			this->myInterface.print("L'historique de recherche a été effacé.");
 		}
 
 		else if(command == "LIST"){
@@ -61,14 +71,14 @@ void MainController::start_program(){
 			this->myLibrary.list_media();
 		}
 
-		else if(command == "RESET"){
+		else if((command == "RESET") && (isAdmin)){
 			this->myLibrary.clear_medias();
 			this->myInterface.print_reset();
 		}
 
 
 
-		else if(command == "ADD"){
+		else if((command == "ADD") && (isAdmin)){
 
 			string media_type = user_input.at(1);
 			Media* m;
@@ -112,23 +122,23 @@ void MainController::start_program(){
 			// delete m;
 		}
 
-		else if(command == "SAVE"){
-			
+		else if((command == "SAVE") && (isAdmin)){
+
 			this->myLibrary.set_db_filename(user_input.at(1));
 			try{
 				this->myLibrary.write_media();
 			}catch(...){
-				this->myInterface.error("Le fichier n'a pas pu été cré.");
+				this->myInterface.error("Le fichier n'a pas pu été crée.");
 			}
-			
+
 		}
 
-		else if(command == "LOAD"){
+		else if((command == "LOAD") && (isAdmin)){
 
 			//before loading a new dabatase, we should save changes to the
 			// curent one.
 			this->myLibrary.write_media();
-			this->myInterface.print("La base des donnés a été sauvegardée.");
+			this->myInterface.print("La base de données a été sauvegardée.");
 
 
 			string original_filename = this->myLibrary.get_db_filename();
@@ -144,7 +154,7 @@ void MainController::start_program(){
 			}
 		}
 
-		else if(command == "DELETE"){
+		else if((command == "DELETE") && (isAdmin)){
 
 			int id = 0;
 			try{
@@ -153,10 +163,10 @@ void MainController::start_program(){
 					this->myInterface.print("Le média a été éfacé.");
 				}
 				else{
-					this->myInterface.print("Aucune média trovué avec l'id fourni.");
+					this->myInterface.print("Aucun média trouvé avec l'id fourni.");
 				}
 			}catch(...){
-				this->myInterface.error("L'identifiant fourni n'est pas valable");
+				this->myInterface.error("L'identifiant fourni n'est pas valable!");
 			}
 		}
 
@@ -166,18 +176,19 @@ void MainController::start_program(){
 			try{
 				id = stoi(user_input.at(1));
 				if(!this->myLibrary.show_media_by_id(id)){
-					this->myInterface.print("Aucune média trovué avec l'id fourni.");
+					this->myInterface.print("Aucun média trouvé avec l'id fourni.");
 				}
 			}catch(...){
-				this->myInterface.error("L'identifiant fourni n'est pas valable");
+				this->myInterface.error("L'identifiant fourni n'est pas valable!");
 			}
 		}
 
 		else if (command == "SEARCH"){
 			if(this->myLibrary.search_by_string(user_input.at(1))){
+				this->myLibrary.list_media();
 			}
 			else{
-				this->myInterface.print("Aucune média a été trouvé. Les filtres des recherche on été éfacées.");
+				this->myInterface.print("Aucun média a été trouvé. Les filtres de recherche ont été effacés.");
 			}
 		}
 	}while(command != "BYE");

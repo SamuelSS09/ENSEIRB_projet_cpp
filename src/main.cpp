@@ -32,7 +32,7 @@ void test_user(){
 	User u2("test1","monpass",true);
 	User u1("test2", "monpass2",true);
 
-	
+
 
 	uc.add_user(u1); uc.add_user(u2);
 
@@ -90,11 +90,11 @@ void test_main_controller(){
 	MainController m("database/media_database.txt","database/users_database.txt");
 	m.start_program();
 }
-
+/*
 void test_interface(){
 	Interface i;
 	std::vector<string> v = i.get_user_command();
-}
+}*/
 
 void test_book_from_file(){
 	Library m("database/media_database.txt");
