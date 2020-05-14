@@ -1,10 +1,13 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "Date.h"
+
 #include <fstream>
 #include <vector>
 #include <string>
 #include <exception>
+#include "Date.h" 
 
 using namespace std;
 //should include all classes from the root of the inheritance tree
@@ -30,12 +33,16 @@ using namespace std;
 // B: more loops than before. Code is more reutilizable.
 // CHOICE : B
 
+// TIME USAGE
+// 
+
 // -------------------------------------------------------------------------
 
 class Database {
 
 private: 
 	string filename;
+	Date date;
 
 public: 
 	//Constructors
@@ -50,6 +57,8 @@ public:
 
 	//other functions
 	vector<string> read_database() throw (std::exception);
+	bool is_updated() throw (std::exception); // returns true if current date is more 
+											 // recent than read date
 
 	void write_database(vector<string> lines) throw (std::exception);
 

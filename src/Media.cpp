@@ -1,5 +1,4 @@
 #include "Media.h"
-#include <typeinfo>       // operator typeid
 
 unsigned Media::nextID = 0;
 // constant short class_index = 0;
@@ -71,7 +70,7 @@ string Media::to_string(){ // formating to write on file.
 }
 
 string Media::get_search_string(){
-	
+
 	string s;
 
 	switch(this->class_index){

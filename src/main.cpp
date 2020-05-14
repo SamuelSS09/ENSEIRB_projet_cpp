@@ -1,8 +1,22 @@
 #include <iostream>
 
 #include "MainController.h"
-
+#include "Date.h"
 using namespace std;
+
+void test_date(){
+	string date = "1998,10,10,10,10,10";
+	string date2 = "1998,10,11,10,10,10";
+	Date d; Date d2; Date d3;
+
+	d.from_string(date);
+	d2.from_string(date2);
+
+	d3.update();
+
+	cout << d.later(d2)<< endl;
+	cout << d3.to_string() << endl;
+}
 
 void test_search_string(){
 	vector<string> s;
@@ -126,6 +140,7 @@ void test_vector_string_constructor(){
 int main(){
 	// //test_multi_id();
 	// //test_exception();
+	//test_date();
 	test_main_controller();
 	//test_user();
 

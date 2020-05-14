@@ -18,9 +18,14 @@
 
 QUESTIONS:
 
--Library::write_media() n'est pas utilisée?
--le role des fonctions read_users et write_users?
--Après BYE, le compteur de users est remis à zero, d'où id n'est pas bien determiné
+-Library::write_media() n'est pas utilisée? 
+Rep: oui, dans le cas SAVE du MainControllre
+
+-le role des fonctions read_users et write_users? 
+REP: ecrire/lire les utilsateurs dans/du fichier
+
+-Après BYE, le compteur de users est remis à zero, d'où id n'est pas bien determiné. 
+Rep: Pas grave, puisque toujours que le programme demarre, il va lire les fichiers, et du coup le premier valeur de nextId sera (1 + l'id plus grand qu'il trouve dans les fichiers) 
 
 
 A faire:
