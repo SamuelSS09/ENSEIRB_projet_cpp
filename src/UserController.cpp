@@ -52,13 +52,20 @@ bool UserController::validate_username(string user_string){
   return validLogin;
 }
 
-bool UserController::validate_password(string user_string){
+bool UserController::validate_password(string user_string, string password_string){
   bool validPassword = false;
   for (long unsigned int i=0; i<this->users.size(); i++){
-    if (users.at(i).get_password()==user_string){
-      this->users.at(i).set_admin(true);
+    if ((users.at(i).get_password()==password_string) && (users.at(i).get_login()==user_string)){
       validPassword = true;
     }
   }
   return validPassword;
 }
+
+  bool UserController::validate_admin(string user_string, string password_string){
+    for (long unsigned int i=0; i<this->users.size(); i++){
+      if ((users.at(i).get_password()==password_string) && (users.at(i).get_login()==user_string)){
+        return this->users.at(i).get_admin();
+      }
+    }
+  }

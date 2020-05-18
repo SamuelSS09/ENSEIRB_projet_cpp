@@ -36,7 +36,8 @@ public:
   void write_users();
   void add_user(User user);
   bool validate_username(string user_string);
-  bool validate_password(string user_string);
+  bool validate_password(string user_string, string password_string);
+  bool validate_admin(string user_string, string password_string);
 };
 
 #endif

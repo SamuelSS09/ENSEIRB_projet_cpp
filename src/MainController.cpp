@@ -27,35 +27,38 @@ void MainController::start_program(){
 	vector<string> user_input = this->myInterface.get_user_login();
 	command = user_input.at(0);
 	bool isAdmin = false;
-	if(command == "M'IDENTIFIER"){
+	if(command == "LOGIN"){
 		this->myInterface.print("Entrez le nom d'utilisateur: ");
-		if (this->Users.validate_username(this->myInterface.get_string_from_user())){
+		string user_string = this->myInterface.get_string_from_user();
+		if (this->Users.validate_username(user_string)){
 			this->myInterface.print("Entrez le mot de passe: ");
-			if (this->Users.validate_password(this->myInterface.get_string_from_user())){
+			string password_string = this->myInterface.get_string_from_user();
+			if (this->Users.validate_password(user_string,password_string)){
 				this->myInterface.print("Identification réussie!");
-				isAdmin = true;
+				isAdmin = this->Users.validate_admin(user_string,password_string);
 			}
 		}
 		else{
 			this->myInterface.error("Votre identification a échouché. Vous pouvez utiliser l'application comme client!");
 		}
 	}
-	else if(command == "M'INSCRIRE"){
+	else if(command == "SIGN-UP"){
 		User u;
 		u.set_info();
 		this->Users.add_user(u);
-		u.set_admin(true);
-		if (u.get_admin()){
+		this->myInterface.print("Voulez-vous vous enregistrer comme admin?(Oui/Non)");
+		if (this->myInterface.get_string_from_user()=="Oui"){
 			this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme administrateur!");
+			u.set_admin(true);
 			isAdmin = true;
 		}
 		else{
-			this->myInterface.error("Votre inscription a échouchée. Utilisez l'application comme client!");
+			this->myInterface.error("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme client!");
 		}
 	}
-	else if(command == "CLIENT"){
-		this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
-	}
+	// else if(command == "CLIENT"){
+	// 	this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
+	// }
 
 	do{
 

@@ -12,9 +12,9 @@ Interface::Interface(){
 	this->possible_options.push_back("SEARCH,1");
 	this->possible_options.push_back("DELETE,1");
 	this->possible_options.push_back("SHOW,1");
-	this->possible_options.push_back("M'IDENTIFIER,0");
-	this->possible_options.push_back("M'INSCRIRE,0");
-	this->possible_options.push_back("CLIENT,0");
+	this->possible_options.push_back("LOGIN,0");
+	this->possible_options.push_back("SIGN-UP,0");
+	// this->possible_options.push_back("CLIENT,0");
 
 }
 
@@ -46,10 +46,10 @@ int Interface::get_int_from_user(){
 
 vector<string> Interface::get_user_login(){
 	cout << endl;
-	cout << "Veuillez choisir entre l'une des options d'utilisations suivantes: " << endl;
-	cout << "M'IDENTIFIER : connectez-vous à votre compte administrateur." << endl;
-	cout << "M'INSCRIRE : m'inscrire pour la première fois comme administrateur." << endl;
-	cout << "CLIENT : utiliser l'application comme client." << endl;
+	cout << "Voulez-vous vous: " << endl;
+	cout << "LOGIN : se connecter à votre compte." << endl;
+	cout << "SIGN-UP : m'inscrire pour la première fois." << endl;
+	// cout << "CLIENT : utiliser l'application comme client." << endl;
 
 	vector<string> optionSplit = helper::split_string(this->get_string_from_user(),' ');
 

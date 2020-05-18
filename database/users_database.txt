@@ -1,6 +1,8 @@
-2020,5,14,12,32,10
+2020,5,18,10,34,1
 1,yousra5,monpass2,0
 0,samuel5,monpass,0
 3,test2,monpass2,1
 2,test1,monpass,1
 4,yousra,yousra,1
+5,iemane,iemane,0
+6,lamia,lamia,0
