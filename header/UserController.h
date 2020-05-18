@@ -38,6 +38,9 @@ public:
   bool validate_username(string user_string);
   bool validate_password(string user_string, string password_string);
   bool validate_admin(string user_string, string password_string);
+  void set_user_as_admin();
+  bool delete_user(int user_id);
+  void list_users();
 };
 
 #endif

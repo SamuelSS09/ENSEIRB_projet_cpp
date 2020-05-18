@@ -39,7 +39,8 @@ void MainController::start_program(){
 			}
 		}
 		else{
-			this->myInterface.error("Votre identification a échouché. Vous pouvez utiliser l'application comme client!");
+			this->myInterface.error("Vos coordonnées sont incorrects!");
+			this->start_program();
 		}
 	}
 	else if(command == "SIGN-UP"){
@@ -52,8 +53,11 @@ void MainController::start_program(){
 			u.set_admin(true);
 			isAdmin = true;
 		}
+		else if (this->myInterface.get_string_from_user()=="Non"){
+			this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme client!");
+		}
 		else{
-			this->myInterface.error("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme client!");
+			this->myInterface.error("Veuillez entrer une option valide!");
 		}
 	}
 	// else if(command == "CLIENT"){

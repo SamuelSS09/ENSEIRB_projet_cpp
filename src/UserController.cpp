@@ -69,3 +69,24 @@ bool UserController::validate_password(string user_string, string password_strin
       }
     }
   }
+
+  void UserController::set_user_as_admin(){
+
+  }
+
+  bool UserController::delete_user(int user_id){
+    bool isFound = false;
+  	for(long unsigned int i=0; i < this->users.size(); i++){
+  		if (users.at(i).get_id() == user_id){
+  			this->users.erase(users.begin()+i);
+  			isFound=true;
+  		}
+  	}
+  	return isFound;
+  }
+
+  void UserController::list_users(){
+    for (long unsigned int i=0; i<this->users.size(); i++){
+      this->users.at(i).show_info();
+    }
+  }

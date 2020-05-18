@@ -1,4 +1,4 @@
-2020,5,18,10,34,1
+2020,5,18,10,52,32
 1,0,The Shinning,Stephen K,1980,400,Horreur,-
 5,2,SGT peppers,The Beatles,50,Abbey road,10
 6,3,Finding Nemo,Pixar,90,Disney,1
