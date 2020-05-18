@@ -1,5 +1,5 @@
 #include "Database.h"
-#include <iostream>
+// #include <iostream>
 
 bool Database::is_updated() throw (std::exception) {
 
@@ -16,7 +16,11 @@ bool Database::is_updated() throw (std::exception) {
 		throw std::exception();
 	}
 
-	return this->date.later(readDate);
+	// cout << "DB: read date " << readDate.to_string() << endl;
+	// cout << "DB: my date " << this->date.to_string() << endl;
+
+
+	return !(readDate.later(this->date));
 }
 
 vector<string> Database::read_database() throw (std::exception) {
@@ -42,6 +46,8 @@ vector<string> Database::read_database() throw (std::exception) {
 		this->date.from_string(strings.at(0)); //construct the date
 		strings.erase(strings.begin());          //erase the date line
 	}
+
+	// cout << "DB: " << this->date.to_string() << endl;
 
 	 return strings;
 }

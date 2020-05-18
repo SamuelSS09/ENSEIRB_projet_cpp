@@ -240,7 +240,7 @@ Media* Library::media_from_string(string media_string){
 
 bool Library::update_mydb(){
   if( !(this->db.is_updated()) ){
-    this->db.read_database();
+    this->load_media();
     return true;
   }
   return false;

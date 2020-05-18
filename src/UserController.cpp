@@ -93,7 +93,7 @@ bool UserController::validate_password(string user_string, string password_strin
 
 bool UserController::update_mydb(){
   if( !(this->db.is_updated()) ){
-    this->db.read_database();
+    this->read_users();
     return true;
   }
   return false;
