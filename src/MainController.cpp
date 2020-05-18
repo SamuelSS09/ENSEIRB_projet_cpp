@@ -1,19 +1,19 @@
 #include "MainController.h"
 
-MainController::MainController(string data_filename, string users_filename){
+MainController::MainController(string data_filename, string uc_filename){
 	setlocale(LC_ALL, "french");
-	this->load_my_database(data_filename,users_filename);
+	this->load_my_database(data_filename,uc_filename);
 	this->myInterface.hello();
 	// this->myInterface.login();
 }
 
-void MainController::load_my_database(string filename, string users_filename){
+void MainController::load_my_database(string filename, string uc_filename){
 
 	this->myLibrary.set_db_filename(filename);
-	this->Users.set_db_filename(users_filename);
+	this->myUc.set_db_filename(uc_filename);
 	try{
 		this->myLibrary.load_media();
-		this->Users.read_users();
+		this->myUc.read_users();
 		//AFICHER UNE MESSAGE
 	}catch(exception e){
 		this->myInterface.print_error_db();
@@ -27,15 +27,16 @@ void MainController::start_program(){
 	vector<string> user_input = this->myInterface.get_user_login();
 	command = user_input.at(0);
 	bool isAdmin = false;
+
 	if(command == "LOGIN"){
 		this->myInterface.print("Entrez le nom d'utilisateur: ");
 		string user_string = this->myInterface.get_string_from_user();
-		if (this->Users.validate_username(user_string)){
+		if (this->myUc.validate_username(user_string)){
 			this->myInterface.print("Entrez le mot de passe: ");
 			string password_string = this->myInterface.get_string_from_user();
-			if (this->Users.validate_password(user_string,password_string)){
+			if (this->myUc.validate_password(user_string,password_string)){
 				this->myInterface.print("Identification réussie!");
-				isAdmin = this->Users.validate_admin(user_string,password_string);
+				isAdmin = this->myUc.validate_admin(user_string,password_string);
 			}
 		}
 		else{
@@ -43,10 +44,11 @@ void MainController::start_program(){
 			this->start_program();
 		}
 	}
+
 	else if(command == "SIGN-UP"){
 		User u;
 		u.set_info();
-		this->Users.add_user(u);
+		this->myUc.add_user(u);
 		this->myInterface.print("Voulez-vous vous enregistrer comme admin?(Oui/Non)");
 		if (this->myInterface.get_string_from_user()=="Oui"){
 			this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme administrateur!");
@@ -149,7 +151,7 @@ void MainController::start_program(){
 
 
 			string original_filename = this->myLibrary.get_db_filename();
-			string original_user_filename = this->Users.get_db_filename();
+			string original_user_filename = this->myUc.get_db_filename();
 			this->myLibrary.set_db_filename(user_input.at(1));
 
 			try{
@@ -198,9 +200,17 @@ void MainController::start_program(){
 				this->myInterface.print("Aucun média a été trouvé. Les filtres de recherche ont été effacés.");
 			}
 		}
+
+		// check for updates in the database
+		if( this->myLibrary.update_mydb() || this->myUc.update_mydb() ){
+			this->myInterface.print("La base des données a été mise à jour.");
+		}
 	}while(command != "BYE");
 
 	this->myInterface.goodbye();
 	//NT: when the program is closed, the destructor of myLibrary will be called.
 	//It will try to write all media into a file
 }
+
+
+

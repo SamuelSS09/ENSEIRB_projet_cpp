@@ -70,6 +70,8 @@ public:
 
 	Media* media_from_string(string media_string); // constructs a Media pointer from a formated string
 												   // this function is used when reading file.
+
+	bool update_mydb();
 };
 
 #endif

@@ -41,6 +41,7 @@ public:
   void set_user_as_admin();
   bool delete_user(int user_id);
   void list_users();
+  bool update_mydb();
 };
 
 #endif

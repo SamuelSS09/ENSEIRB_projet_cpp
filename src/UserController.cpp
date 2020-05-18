@@ -90,3 +90,11 @@ bool UserController::validate_password(string user_string, string password_strin
       this->users.at(i).show_info();
     }
   }
+
+bool UserController::update_mydb(){
+  if( !(this->db.is_updated()) ){
+    this->db.read_database();
+    return true;
+  }
+  return false;
+}

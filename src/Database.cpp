@@ -7,7 +7,7 @@ bool Database::is_updated() throw (std::exception) {
 	ifstream ifs(this->filename,std::ios::in);
 	Date readDate;
 	string line;   					// represents each line of the file
-	if(ifs.is_open()){ 		       // check if file is correctly oppened
+	if(ifs.is_open()){ 		       // check if file is correctly openned
 		getline(ifs,line);
 		readDate.from_string(line); //construct the date
 		ifs.close();

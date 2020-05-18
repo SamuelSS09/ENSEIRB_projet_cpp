@@ -237,3 +237,11 @@ Media* Library::media_from_string(string media_string){
 
  	return media;
 }
+
+bool Library::update_mydb(){
+  if( !(this->db.is_updated()) ){
+    this->db.read_database();
+    return true;
+  }
+  return false;
+}
