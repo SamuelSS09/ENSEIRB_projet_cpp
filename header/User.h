@@ -19,9 +19,6 @@ protected:
   bool admin;
 
 
-  //Initialisation of attributs
-  void init(unsigned id, string login,string password,bool admin);
-
 public:
   //Constructors
   User();
@@ -44,6 +41,11 @@ public:
   void set_login(string login){this->login=login;}
   void set_password(string password){this->password=password;}
   void set_admin(bool admin){this->admin=admin;}
+
+
+    //Initialisation of attributs
+    void init(unsigned id, string login,string password,bool admin);
+
 
   //Violation of the MVC, only here for the sake of simplicity.
 	string get_string_from_user(); // function to obtain a single line inserted

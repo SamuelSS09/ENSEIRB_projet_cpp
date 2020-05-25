@@ -20,55 +20,65 @@ void MainController::load_my_database(string filename, string uc_filename){
 	}
 }
 
-void MainController::start_program(){
-
+User MainController::login(){
 	string command = "";
+	User u;
 
-	vector<string> user_input = this->myInterface.get_user_login();
-	command = user_input.at(0);
-	bool isAdmin = false;
+	 do{
+		vector<string> user_input = this->myInterface.get_user_login();
+		command = user_input.at(0);
+		// bool isAdmin = false;
 
-	if(command == "LOGIN"){
-		this->myInterface.print("Entrez le nom d'utilisateur: ");
-		string user_string = this->myInterface.get_string_from_user();
-		if (this->myUc.validate_username(user_string)){
+		if(command == "LOGIN"){
+			this->myInterface.print("Entrez le nom de l'utilisateur: ");
+			u.set_login(this->myInterface.get_string_from_user());
 			this->myInterface.print("Entrez le mot de passe: ");
-			string password_string = this->myInterface.get_string_from_user();
-			if (this->myUc.validate_password(user_string,password_string)){
+			u.set_password(this->myInterface.get_string_from_user());
+			if (this->myUc.validate_login(u)){
 				this->myInterface.print("Identification réussie!");
-				isAdmin = this->myUc.validate_admin(user_string,password_string);
+				// validate if user is admin to manage the multiple commands
+				if(this->myUc.validate_admin(u)){
+					u.set_admin("true");
+				}
+			}
+			else{
+				this->myInterface.error("Vos coordonnées sont incorrects!");
+				u.init(0,"","",false);
 			}
 		}
-		else{
-			this->myInterface.error("Vos coordonnées sont incorrects!");
-			this->start_program();
-		}
-	}
 
-	else if(command == "SIGN-UP"){
-		User u;
-		u.set_info();
-		this->myUc.add_user(u);
-		this->myInterface.print("Voulez-vous vous enregistrer comme admin?(Oui/Non)");
-		if (this->myInterface.get_string_from_user()=="Oui"){
-			this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme administrateur!");
-			u.set_admin(true);
-			isAdmin = true;
+		else if(command == "SIGN-UP"){
+			u.set_info();
+			this->myInterface.print("Voulez-vous vous enregistrer comme admin?(Oui/Non)");
+			if (this->myInterface.get_string_from_user()=="Oui"){
+				this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme administrateur!");
+				u.set_admin(true);
+				this->myUc.add_user(u);
+				// isAdmin = true;
+			}
+			else if (this->myInterface.get_string_from_user()=="Non"){
+				this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme client!");
+			}
+			else{
+				this->myInterface.error("Veuillez entrer une option valide!");
+				u.init(0,"","",false);
+			}
 		}
-		else if (this->myInterface.get_string_from_user()=="Non"){
-			this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme client!");
-		}
-		else{
-			this->myInterface.error("Veuillez entrer une option valide!");
-		}
-	}
-	// else if(command == "CLIENT"){
-	// 	this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
-	// }
+		// else if(command == "CLIENT"){
+		// 	this->myInterface.print("Vous pouvez utiliser l'application comme un client.");
+		// }
+	}while(u.get_login()=="");
+	return u;
+	this->myInterface.goodbye();
+}
+
+void MainController::start_program(){
+	string command = "";
+	bool isAdmin = this->login().get_admin();
+	cout << "le login est: " << this->login().get_login() << endl;
 
 	do{
-
-		user_input = this->myInterface.get_user_command(isAdmin);
+		vector<string> user_input = this->myInterface.get_user_command(isAdmin);
 		command = user_input.at(0);
 		if(command == "CLEAR"){
 			this->myLibrary.clear_search();
@@ -169,7 +179,7 @@ void MainController::start_program(){
 			try{
 				id = stoi(user_input.at(1));
 				if(this->myLibrary.delete_by_id(id)){
-					this->myInterface.print("Le média a été éfacé.");
+					this->myInterface.print("Le média a été effacé.");
 				}
 				else{
 					this->myInterface.print("Aucun média trouvé avec l'id fourni.");
@@ -189,6 +199,39 @@ void MainController::start_program(){
 				}
 			}catch(...){
 				this->myInterface.error("L'identifiant fourni n'est pas valable!");
+			}
+		}
+		else if(command == "DELETE-ACCOUNT"){
+			this->myUc.delete_user(this->login());
+		}
+
+		else if((command == "DELETE-USER") && (isAdmin)){
+
+			int id = 0;
+			try{
+				id = stoi(user_input.at(1));
+				if(this->myUc.delete_user_by_id(id)){
+					this->myInterface.print("L'utilisateur a été effacé.");
+				}
+				else{
+					this->myInterface.print("Aucun utilisateur trouvé avec l'id fourni.");
+				}
+			}catch(...){
+				this->myInterface.error("L'identifiant fourni n'est pas valable!");
+			}
+		}
+
+		else if(command == "LIST-USERS"){
+			this->myUc.list_users();
+		}
+
+		else if((command == "ADMIN") && (isAdmin)){
+			string user_name = user_input.at(1);
+			if (this->myUc.set_user_as_admin(user_name)){
+				this->myInterface.print("Opération réussie.");
+			}
+			else{
+				this->myInterface.print("Opération a échouché.");
 			}
 		}
 
@@ -211,6 +254,3 @@ void MainController::start_program(){
 	//NT: when the program is closed, the destructor of myLibrary will be called.
 	//It will try to write all media into a file
 }
-
-
-

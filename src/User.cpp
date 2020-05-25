@@ -24,7 +24,7 @@ User::User(vector<string> attributs){
 
   if(attributs.at(3) == "1"){
     readAdmin = true;
-  } 
+  }
   else{
     readAdmin =  false;
   }
@@ -53,7 +53,7 @@ string User::get_string_from_user(){
 
 string User::to_string(){
   string is_admin;
-  
+
   if(this->admin){is_admin="1";} else{is_admin="0";}
 
   return std::to_string(get_id()) + "," + get_login() + "," + get_password()+ "," + is_admin;

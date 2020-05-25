@@ -22,6 +22,7 @@ public:
 	MainController(string data_filename, string uc_filename);
 
 	//other functions
+	User login();
 	void start_program();
 
 };
