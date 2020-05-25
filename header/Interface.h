@@ -26,7 +26,7 @@ private:
 	vector<string> user_options;
 
 	//helper functions
-	bool validate_option(vector<string> optionSplit);
+	bool validate_media_option(vector<string> optionSplit);
 	bool validate_user_option(vector<string> optionSplit);
 
 public:

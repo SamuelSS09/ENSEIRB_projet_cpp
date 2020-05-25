@@ -60,9 +60,8 @@ string User::to_string(){
 
 }
 void User::show_info(){
-  cout << "ID: " << this->get_id() << endl;
-  cout << "Login: " << this->get_login() << endl;
-  cout << "Password: " << this->get_password() << endl;
+  cout << "ID: " << this->get_id() << "\t" << "Login: " << this->get_login() << endl;
+  // cout << "Password: " << this->get_password() << endl;
 }
 
 void User::set_info(){

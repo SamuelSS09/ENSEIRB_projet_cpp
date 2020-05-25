@@ -102,6 +102,8 @@ void test_exception(){
 void test_main_controller(){
 	// test with: LOAD database/media_database.txt
 	MainController m("database/media_database.txt","database/users_database.txt");
+	// m.start_program();
+	m.start_login();
 	m.start_program();
 }
 /*

@@ -75,6 +75,9 @@ vector<Media*> Library::get_medias(){ //
 }
 
 void Library::load_media(){
+
+	this->clear_medias();
+
    vector<string> media_string = this->db.read_database();
    for(long unsigned int i = 0; i < media_string.size(); i++){
    	//OBS1: should not create duplicated Media.

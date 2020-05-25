@@ -12,6 +12,7 @@ private:
 	Interface myInterface;
 	Library myLibrary;
 	UserController myUc;
+	User activeUser;
 
 	//helper functions
 	void load_filename();
@@ -23,6 +24,7 @@ public:
 
 	//other functions
 	User login();
+	void start_login();
 	void start_program();
 
 };

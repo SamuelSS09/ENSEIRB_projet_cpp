@@ -16,6 +16,7 @@ Interface::Interface(){
 	this->possible_options.push_back("DELETE-USER,1"); //for admin to delete accounts by their id
 	this->possible_options.push_back("ADMIN,1");
 	this->possible_options.push_back("LIST-USERS,0");
+
 	this->user_options.push_back("LOGIN,0");
 	this->user_options.push_back("SIGN-UP,0");
 	this->user_options.push_back("BYE,0");
@@ -100,7 +101,7 @@ vector<string> Interface::get_user_command(bool Isadmin){
 	vector<string> optionSplit = helper::split_string(this->get_string_from_user(),' ');
 
 
-	while(cin.bad() || !(this->validate_option(optionSplit)) ){
+	while(cin.bad() || !(this->validate_media_option(optionSplit)) ){
 
 		cout << "Veuillez insérer une option valide!" << endl;
 
@@ -112,31 +113,8 @@ vector<string> Interface::get_user_command(bool Isadmin){
 
 }
 
-void Interface::hello(){
-	cout << endl << "Bienvenu(e) à l'application de management de la librairie! " << endl;
 
-}
-
-void Interface::login(){
-	cout << endl << "Veuillez vous connecter!" << endl;
-}
-
-void Interface::print_error_db(){
-
-	cerr << endl << "Le fichier n'a pas pu être ouverte." << endl;
-	cout << "Veuillez vérifier si le fichier de données existe."<< endl;
-
-}
-
-void Interface::goodbye(){
-	cout << endl  << "Au revoir!" << endl;
-}
-
-void Interface::print_reset(){
-	cout << endl << "La base de données a été effacée." << endl;
-}
-
-bool Interface::validate_option(vector<string> optionSplit){//validate every possible option
+bool Interface::validate_media_option(vector<string> optionSplit){//validate every possible option
 	// 1 - Nothing was inserted:
 	if(optionSplit.size() == 0){return false;}
 
@@ -213,6 +191,30 @@ bool Interface::validate_user_option(vector<string> optionSplit){//validate ever
 void Interface::print(string txt){ cout << endl << txt << endl;}
 void Interface::error(string error){cerr << endl << error << endl;}
 
+
+void Interface::hello(){
+	cout << endl << "Bienvenu(e) à l'application de management de la librairie! " << endl;
+
+}
+
+void Interface::login(){
+	cout << endl << "Veuillez vous connecter!" << endl;
+}
+
+void Interface::print_error_db(){
+
+	cerr << endl << "Le fichier n'a pas pu être ouverte." << endl;
+	cout << "Veuillez vérifier si le fichier de données existe."<< endl;
+
+}
+
+void Interface::goodbye(){
+	cout << endl  << "Au revoir!" << endl;
+}
+
+void Interface::print_reset(){
+	cout << endl << "La base de données a été effacée." << endl;
+}
 
 // void Interface::list_media(std::vector<Media*> medias){
 // 	cout << "ID              " << "TITRE            " <<"AUTEUR            " << endl;
