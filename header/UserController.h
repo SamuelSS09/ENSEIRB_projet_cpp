@@ -39,10 +39,8 @@ public:
   // bool validate_password(string user_string, string password_string);
   User login(User u);
 
-  bool validate_login(User u);
-  bool validate_admin(User u);
+
   bool set_user_as_admin(string user_login);
-  void delete_user(User u);
   bool delete_user_by_id(int user_id);
   void list_users();
   bool update_mydb();

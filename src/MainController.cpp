@@ -246,6 +246,20 @@ void MainController::start_program(){
 				}
 			}
 
+			else if (command == "UPDATE"){
+
+				if( this->myLibrary.update_mydb() || this->myUc.update_mydb() ){
+					
+				}
+
+				else if(isAdmin) {
+					this->myUc.write_users();
+					this->myLibrary.write_media();
+
+					this->myInterface.print("Vous avez enregistré vos modifications.");
+				}
+			}
+
 			// check for updates in the database
 			if( this->myLibrary.update_mydb() || this->myUc.update_mydb() ){
 				this->myInterface.print("La base des données a été mise à jour.");
@@ -260,57 +274,3 @@ void MainController::start_program(){
 	//It will try to write all media into a file
 }
 
-
-
-
-
-
-User MainController::login(){
-	string command = "";
-	User u;
-
-	 do{
-		vector<string> user_input = this->myInterface.get_user_login();
-		command = user_input.at(0);
-		// bool isAdmin = false;
-
-		if(command == "LOGIN"){
-			this->myInterface.print("Entrez le nom de l'utilisateur: ");
-			u.set_login(this->myInterface.get_string_from_user());
-			this->myInterface.print("Entrez le mot de passe: ");
-			u.set_password(this->myInterface.get_string_from_user());
-			if (this->myUc.validate_login(u)){
-				this->myInterface.print("Identification réussie!");
-				// validate if user is admin to manage the multiple commands
-				if(this->myUc.validate_admin(u)){
-					u.set_admin("true");
-				}
-			}
-			else{
-				this->myInterface.error("Vos coordonnées sont incorrects!");
-				u.init(0,"","",false);
-			}
-		}
-
-		else if(command == "SIGN-UP"){
-			u.set_info();
-			this->myInterface.print("Voulez-vous vous enregistrer comme admin?(Oui/Non)");
-			if (this->myInterface.get_string_from_user()=="Oui"){
-				this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme administrateur!");
-				u.set_admin(true);
-				this->myUc.add_user(u);
-				// isAdmin = true;
-			}
-			else if (this->myInterface.get_string_from_user()=="Non"){
-				this->myInterface.print("Vous êtes bien inscrit. Vous pouvez utiliser l'application comme client!");
-			}
-			else{
-				this->myInterface.error("Veuillez entrer une option valide!");
-				u.init(0,"","",false);
-			}
-		}
-
-	}while(u.get_login()=="");
-	return u;
-	this->myInterface.goodbye();
-}

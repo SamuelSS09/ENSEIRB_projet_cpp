@@ -16,6 +16,7 @@ Interface::Interface(){
 	this->possible_options.push_back("DELETE-USER,1"); //for admin to delete accounts by their id
 	this->possible_options.push_back("ADMIN,1");
 	this->possible_options.push_back("LIST-USERS,0");
+	this->possible_options.push_back("UPDATE,0");
 
 	this->user_options.push_back("LOGIN,0");
 	this->user_options.push_back("SIGN-UP,0");
@@ -81,7 +82,7 @@ vector<string> Interface::get_user_command(bool Isadmin){
 	cout << "- LIST           : afficher la médiathèque. Garde les résultats d'une recherche précedente." << endl;
 	cout << "- CLEAR          : jetter les résultats des recherches accumulées." << endl;
 	cout << "- SHOW id        : afficher la médiathèque de l'identifiant fourni" << "\n" << endl;
-
+	cout << "- UPDATE         : mettre à jour la base de données." << "\n" << endl;
 
 	if (Isadmin){
 		cout << "- LOAD filename  : charger la médiathèque avec le fichier nommé filename." << endl;
